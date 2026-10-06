@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basmat Inssan | بصمة إنسان — Spreading Hope. Creating Change.</title>
+<meta name="description" content="Basmat Inssan (بصمة إنسان) is an independent, youth-led non-profit association in Morocco dedicated to supporting people in need and spreading hope, compassion and solidarity.">
+
+<!-- Fonts: Manrope (EN) + Cairo/Tajawal (AR) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BASMAT INSSAN — Design System
+   Palette: Navy trust + Gold hope, warm white base
+   ============================================================ */
+:root{
+  --navy:#0B2D50;
+  --navy-dark:#071F38;
+  --gold:#D9A52E;
+  --gold-light:#E8C15A;
+  --warm-white:#FCFBF7;
+  --soft-gray:#F3F4F6;
+  --text-gray:#4B5563;
+  --white:#FFFFFF;
+  --shadow-sm:0 2px 10px rgba(7,31,56,.06);
+  --shadow-md:0 12px 32px rgba(7,31,56,.10);
+  --shadow-lg:0 24px 60px rgba(7,31,56,.16);
+  --radius:18px;
+  --radius-lg:26px;
+  --ease:cubic-bezier(.22,.8,.28,1);
+  --font-en:'Manrope',system-ui,-apple-system,sans-serif;
+  --font-ar-body:'Tajawal','Cairo',sans-serif;
+  --font-ar-head:'Cairo','Tajawal',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-en);
+  background:var(--warm-white);
+  color:var(--navy-dark);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+html[dir="rtl"] body{font-family:var(--font-ar-body)}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] h4,html[dir="rtl"] .brand strong,html[dir="rtl"] .btn{font-family:var(--font-ar-head)}
+h1,h2,h3,h4{line-height:1.15;font-weight:800;color:var(--navy-dark);letter-spacing:-.01em}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{width:min(1180px,92%);margin-inline:auto}
+section{position:relative}
+
+/* ---------- Reveal animations ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Gold fingerprint decorative line ---------- */
+.fprint-line{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.fprint-line .line{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px}
+html[dir="rtl"] .fprint-line .line{background:linear-gradient(-90deg,var(--gold),transparent)}
+.fprint-line svg{width:26px;height:26px;color:var(--gold);flex:none}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+html[dir="rtl"] .kicker{letter-spacing:.02em;font-size:.9rem}
+.section-title{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-bottom:16px}
+.section-lead{color:var(--text-gray);font-size:1.06rem;max-width:640px}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 32px;border-radius:999px;font-weight:700;font-size:.98rem;
+  cursor:pointer;border:none;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);
+  will-change:transform;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold) 0%,#c4922a 100%);color:var(--navy-dark);box-shadow:0 10px 26px rgba(217,165,46,.38)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(217,165,46,.5)}
+.btn-navy{background:var(--navy);color:var(--white);box-shadow:0 10px 26px rgba(11,45,80,.3)}
+.btn-navy:hover{transform:translateY(-3px);background:var(--navy-dark)}
+.btn-outline{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px rgba(11,45,80,.22)}
+.btn-outline:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 2px var(--gold);color:var(--navy)}
+.btn-ghost-light{background:rgba(255,255,255,.1);color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-ghost-light:hover{transform:translateY(-3px);background:rgba(255,255,255,.18)}
+.btn-sm{padding:11px 24px;font-size:.9rem}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar{
+  position:fixed;inset-inline:0;top:0;z-index:100;
+  transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .4s var(--ease);
+  padding:20px 0;
+}
+.navbar.scrolled{
+  padding:10px 0;
+  background:rgba(252,251,247,.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 4px 24px rgba(7,31,56,.08);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-logo{height:52px;width:auto;object-fit:contain;transition:height .4s var(--ease)}
+.navbar.scrolled .brand-logo{height:40px}
+.brand-fallback{
+  display:none;height:48px;width:48px;flex:none;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--navy),var(--navy-dark));border-radius:14px;
+}
+.navbar.scrolled .brand-fallback{height:38px;width:38px}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-size:1.06rem;font-weight:800;color:var(--navy)}
+.brand-text small{font-size:.82rem;color:var(--gold);font-weight:700}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:9px 14px;border-radius:10px;font-weight:600;font-size:.94rem;color:var(--navy);
+  transition:color .3s,background .3s;position:relative;
+}
+.nav-links a::after{
+  content:"";position:absolute;inset-inline:14px;bottom:4px;height:2px;border-radius:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .35s var(--ease);
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.lang-switch{
+  display:flex;align-items:center;gap:2px;background:rgba(11,45,80,.07);
+  border-radius:999px;padding:4px;font-weight:700;
+}
+.lang-switch button{
+  border:none;background:transparent;cursor:pointer;padding:7px 14px;border-radius:999px;
+  font-weight:700;font-size:.86rem;color:var(--navy);transition:background .3s,color .3s;
+}
+.lang-switch button.active{background:var(--navy);color:var(--gold-light)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:120}
+.hamburger span{display:block;width:26px;height:2.5px;background:var(--navy);border-radius:3px;margin:5px 0;transition:.35s var(--ease)}
+
+/* Mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:110;background:var(--navy-dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;pointer-events:none;transition:opacity .4s var(--ease);
+}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{
+  color:var(--white);font-size:1.5rem;font-weight:700;padding:12px 24px;border-radius:12px;
+  opacity:0;transform:translateY(18px);transition:.45s var(--ease);
+}
+html[dir="rtl"] .mobile-menu a{font-family:var(--font-ar-head)}
+.mobile-menu.open a{opacity:1;transform:none}
+.mobile-menu a:hover{color:var(--gold-light)}
+.mobile-menu .btn{margin-top:18px;opacity:0;transform:translateY(18px);transition:.5s var(--ease) .35s}
+.mobile-menu.open .btn{opacity:1;transform:none}
+.mobile-close{position:absolute;top:26px;inset-inline-end:26px;background:none;border:none;color:var(--white);cursor:pointer}
+.mobile-close svg{width:30px;height:30px}
+body.menu-open .hamburger span{background:var(--white)}
+body.menu-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+body.menu-open .hamburger span:nth-child(2){opacity:0}
+body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  padding:130px 0 70px;
+  background:
+    radial-gradient(1100px 600px at 88% -10%,rgba(217,165,46,.14),transparent 60%),
+    radial-gradient(900px 500px at -10% 110%,rgba(11,45,80,.08),transparent 60%),
+    var(--warm-white);
+  overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-media{position:relative}
+.hero-media .frame{
+  border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);
+  transform:rotate(-1.2deg);position:relative;
+}
+html[dir="rtl"] .hero-media .frame{transform:rotate(1.2deg)}
+.hero-media .frame::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(200deg,rgba(11,45,80,0) 40%,rgba(7,31,56,.45) 100%);
+}
+.hero-media img{width:100%;height:560px;object-fit:cover;transition:transform 1.2s var(--ease)}
+.hero-media:hover img{transform:scale(1.04)}
+.hero-badge{
+  position:absolute;bottom:26px;inset-inline-start:-26px;z-index:2;
+  background:rgba(252,251,247,.92);backdrop-filter:blur(10px);
+  border-radius:16px;padding:16px 22px;box-shadow:var(--shadow-md);
+  display:flex;align-items:center;gap:14px;border-inline-start:4px solid var(--gold);
+}
+.hero-badge svg{width:34px;height:34px;color:var(--gold);flex:none}
+.hero-badge strong{display:block;font-size:.95rem;color:var(--navy)}
+.hero-badge span{font-size:.8rem;color:var(--text-gray)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(217,165,46,.12);color:#8a6a15;border-radius:999px;padding:8px 18px;font-weight:700;font-size:.82rem;margin-bottom:24px}
+html[dir="rtl"] .hero-eyebrow{font-size:.9rem}
+.hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(217,165,46,.25)}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.3rem);letter-spacing:-.02em;margin-bottom:24px}
+.hero h1 .gold{
+  background:linear-gradient(120deg,var(--gold) 10%,#b8860b 60%,var(--gold-light) 110%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{font-size:1.13rem;color:var(--text-gray);max-width:520px;margin-bottom:36px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.hero-float{
+  position:absolute;border-radius:50%;pointer-events:none;filter:blur(2px);
+  animation:floaty 7s ease-in-out infinite;
+}
+.hero-float.f1{width:130px;height:130px;background:radial-gradient(circle at 30% 30%,rgba(232,193,90,.35),rgba(232,193,90,.05));top:12%;inset-inline-end:6%}
+.hero-float.f2{width:70px;height:70px;background:radial-gradient(circle at 30% 30%,rgba(11,45,80,.14),rgba(11,45,80,.03));bottom:14%;inset-inline-end:38%;animation-delay:1.6s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* Scroll hint */
+.scroll-hint{
+  position:absolute;bottom:28px;inset-inline-start:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-gray);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+}
+html[dir="rtl"] .scroll-hint{transform:translateX(50%)}
+.scroll-hint .wheel{width:24px;height:38px;border:2px solid rgba(11,45,80,.3);border-radius:14px;position:relative}
+.scroll-hint .wheel::after{content:"";position:absolute;top:6px;inset-inline-start:50%;transform:translateX(-50%);width:4px;height:8px;border-radius:4px;background:var(--gold);animation:wheel 1.8s ease-in-out infinite}
+html[dir="rtl"] .scroll-hint .wheel::after{transform:translateX(50%)}
+@keyframes wheel{0%{opacity:1;top:6px}70%{opacity:0;top:20px}100%{opacity:0}}
+
+/* ============================================================
+   HUMAN MESSAGE
+   ============================================================ */
+.human{padding:120px 0;text-align:center;background:var(--white)}
+.human blockquote{
+  font-size:clamp(1.7rem,3.6vw,2.9rem);font-weight:800;color:var(--navy);
+  max-width:900px;margin:0 auto 28px;line-height:1.35;letter-spacing:-.01em;
+}
+html[dir="rtl"] .human blockquote{font-family:var(--font-ar-head);line-height:1.6}
+.human blockquote em{font-style:normal;color:var(--gold)}
+.human .body{max-width:680px;margin:0 auto;color:var(--text-gray);font-size:1.08rem}
+.human .divider{width:120px;height:3px;margin:34px auto 0;border-radius:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.fprint-ornament{width:64px;height:64px;margin:0 auto 30px;color:var(--gold);opacity:.9}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{padding:120px 0;background:linear-gradient(180deg,var(--warm-white),#fff)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-bottom:80px}
+.about-media{position:relative}
+.about-media .main-img{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);height:520px}
+.about-media .main-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.about-media:hover .main-img img{transform:scale(1.05)}
+.about-media .small-img{
+  position:absolute;bottom:-40px;inset-inline-end:-30px;width:230px;height:180px;border-radius:var(--radius);
+  overflow:hidden;border:6px solid var(--white);box-shadow:var(--shadow-md);
+}
+.about-media .small-img img{width:100%;height:100%;object-fit:cover}
+.about-media .exp-badge{
+  position:absolute;top:-26px;inset-inline-start:-26px;background:var(--navy);color:var(--white);
+  border-radius:18px;padding:18px 24px;box-shadow:var(--shadow-md);text-align:center;
+  border-bottom:4px solid var(--gold);
+}
+.about-media .exp-badge strong{display:block;font-size:1.3rem;color:var(--gold-light)}
+.about-media .exp-badge span{font-size:.78rem;opacity:.85}
+.about-text p{color:var(--text-gray);margin-bottom:18px;font-size:1.05rem}
+.about-points{margin:26px 0 34px;display:grid;gap:14px}
+.about-points li{display:flex;align-items:flex-start;gap:12px;font-weight:600;color:var(--navy)}
+.about-points svg{width:22px;height:22px;color:var(--gold);flex:none;margin-top:2px}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.value-card{
+  background:var(--white);border-radius:var(--radius);padding:34px 28px;
+  box-shadow:var(--shadow-sm);border:1px solid rgba(11,45,80,.06);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+  position:relative;overflow:hidden;
+}
+.value-card::before{
+  content:"";position:absolute;top:0;inset-inline-start:0;width:100%;height:4px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+}
+html[dir="rtl"] .value-card::before{transform-origin:right}
+.value-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);border-color:rgba(217,165,46,.35)}
+.value-card:hover::before{transform:scaleX(1)}
+.value-icon{
+  width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(217,165,46,.16),rgba(232,193,90,.08));
+  margin-bottom:20px;transition:transform .45s var(--ease);
+}
+.value-card:hover .value-icon{transform:scale(1.08) rotate(-4deg)}
+.value-icon svg{width:28px;height:28px;color:var(--gold)}
+.value-card h3{font-size:1.14rem;margin-bottom:8px}
+.value-card p{font-size:.92rem;color:var(--text-gray)}
+
+/* ============================================================
+   ACTIVITIES
+   ============================================================ */
+.activities{padding:120px 0;background:var(--navy-dark);overflow:hidden}
+.activities::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(800px 500px at 85% 0%,rgba(217,165,46,.12),transparent 60%),
+             radial-gradient(700px 500px at 0% 100%,rgba(217,165,46,.07),transparent 60%);
+  pointer-events:none;
+}
+.activities .kicker{color:var(--gold-light)}
+.activities .section-title,.activities .section-lead{color:var(--white)}
+.activities .section-lead{opacity:.75}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px}
+.activity-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--radius);overflow:hidden;backdrop-filter:blur(4px);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;
+  display:flex;flex-direction:column;
+}
+.activity-card:hover{transform:translateY(-10px);box-shadow:0 28px 60px rgba(0,0,0,.45);border-color:rgba(217,165,46,.45)}
+.activity-card .thumb{height:220px;overflow:hidden;position:relative}
+.activity-card .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,31,56,.7))}
+.activity-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.activity-card:hover .thumb img{transform:scale(1.09)}
+.activity-card .body{padding:26px 26px 30px;display:flex;flex-direction:column;flex:1}
+.activity-card .num{font-size:.78rem;font-weight:800;letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
+html[dir="rtl"] .activity-card .num{letter-spacing:.02em}
+.activity-card h3{color:var(--white);font-size:1.2rem;margin-bottom:10px}
+.activity-card p{color:rgba(255,255,255,.65);font-size:.93rem;flex:1}
+.activity-card .more{
+  margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.88rem;color:var(--gold-light);
+}
+html[dir="rtl"] .activity-card .more{flex-direction:row}
+.activity-card .more svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+html[dir="ltr"] .activity-card:hover .more svg{transform:translateX(5px)}
+html[dir="rtl"] .activity-card:hover .more svg{transform:translateX(-5px) scaleX(-1)}
+html[dir="rtl"] .activity-card .more svg{transform:scaleX(-1)}
+.activities-note{margin-top:44px;text-align:center;color:rgba(255,255,255,.45);font-size:.88rem;font-style:italic}
+
+/* ============================================================
+   IMPACT
+   ============================================================ */
+.impact{padding:130px 0;background:var(--white);text-align:center;overflow:hidden}
+.impact-statements{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:900px;margin:56px auto 0}
+.impact-card{
+  background:var(--warm-white);border:1px solid rgba(11,45,80,.07);border-radius:var(--radius-lg);
+  padding:52px 36px;position:relative;transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.impact-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.impact-card .quote-mark{font-size:4.5rem;line-height:.6;color:var(--gold-light);font-family:Georgia,serif;display:block;margin-bottom:18px}
+html[dir="rtl"] .impact-card .quote-mark{font-family:var(--font-ar-head)}
+.impact-card p{font-size:clamp(1.25rem,2.2vw,1.6rem);font-weight:800;color:var(--navy);line-height:1.4}
+html[dir="rtl"] .impact-card p{font-family:var(--font-ar-head)}
+.impact-banner{
+  margin-top:70px;border-radius:var(--radius-lg);overflow:hidden;position:relative;height:380px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+}
+.impact-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.impact-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(7,31,56,.82),rgba(11,45,80,.55))}
+.impact-banner .inner{position:relative;z-index:2;padding:0 24px;max-width:760px}
+.impact-banner h3{color:var(--white);font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:14px}
+.impact-banner p{color:rgba(255,255,255,.8);font-size:1.05rem}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gallery{padding:120px 0;background:var(--warm-white)}
+.masonry{columns:3;column-gap:22px;margin-top:56px}
+.g-item{
+  break-inside:avoid;margin-bottom:22px;border-radius:var(--radius);overflow:hidden;position:relative;
+  box-shadow:var(--shadow-sm);cursor:pointer;
+}
+.g-item img{width:100%;transition:transform .8s var(--ease)}
+.g-item::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,31,56,.78));
+  opacity:0;transition:opacity .5s var(--ease);
+}
+.g-item .g-cap{
+  position:absolute;bottom:0;inset-inline:0;padding:20px 22px;z-index:2;
+  display:flex;align-items:center;gap:10px;color:var(--white);font-weight:700;font-size:.92rem;
+  opacity:0;transform:translateY(12px);transition:.5s var(--ease);
+}
+.g-item .g-cap svg{width:20px;height:20px;color:var(--gold-light);flex:none}
+.g-item:hover img{transform:scale(1.07)}
+.g-item:hover::after,.g-item:hover .g-cap{opacity:1;transform:none}
+
+/* ============================================================
+   GET INVOLVED
+   ============================================================ */
+.involved{padding:0;position:relative}
+.involved-wrap{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-dark) 100%);
+  border-radius:0;position:relative;overflow:hidden;
+  padding:120px 0;
+}
+.involved-wrap::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(700px 400px at 85% 15%,rgba(217,165,46,.16),transparent 60%);
+}
+.involved-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;z-index:2}
+.involved h2{color:var(--white);font-size:clamp(2rem,4vw,3rem);margin-bottom:18px}
+.involved p.lead{color:rgba(255,255,255,.72);font-size:1.1rem;max-width:480px;margin-bottom:36px}
+.involved-cta{display:flex;gap:16px;flex-wrap:wrap}
+.involved-media{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);position:relative}
+.involved-media img{width:100%;height:440px;object-fit:cover}
+.involved-media::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 55%,rgba(7,31,56,.5))}
+.involved-steps{display:flex;flex-direction:column;gap:0;margin-top:40px}
+.involved-steps .step{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.involved-steps .step:last-child{border-bottom:none}
+.involved-steps .n{
+  width:38px;height:38px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--gold);color:var(--gold-light);font-weight:800;font-size:.9rem;
+}
+.involved-steps span{color:rgba(255,255,255,.8);font-weight:600;font-size:.95rem}
+
+/* ============================================================
+   SUPPORT
+   ============================================================ */
+.support{padding:120px 0;background:var(--white)}
+.support-card{
+  border-radius:var(--radius-lg);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;
+  box-shadow:var(--shadow-lg);background:var(--navy);
+}
+.support-card .img{min-height:420px;position:relative}
+.support-card .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.support-card .body{padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.support-card h2{color:var(--white);font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:16px}
+.support-card p{color:rgba(255,255,255,.72);margin-bottom:30px;font-size:1.04rem}
+.support-ways{display:grid;gap:12px;margin-bottom:34px}
+.support-ways li{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.85);font-weight:600;font-size:.95rem}
+.support-ways svg{width:20px;height:20px;color:var(--gold-light);flex:none}
+.support-card .fine{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:16px}
+
+/* ============================================================
+   INSTAGRAM
+   ============================================================ */
+.instagram{padding:120px 0;background:var(--warm-white);text-align:center}
+.ig-handle{
+  display:inline-flex;align-items:center;gap:12px;margin:26px 0 40px;padding:14px 28px;
+  background:var(--white);border-radius:999px;box-shadow:var(--shadow-sm);
+  font-weight:800;font-size:1.15rem;color:var(--navy);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.ig-handle:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.ig-handle svg{width:26px;height:26px;color:var(--gold)}
+.ig-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:44px}
+.ig-tile{
+  border-radius:16px;overflow:hidden;position:relative;aspect-ratio:1/1;box-shadow:var(--shadow-sm);
+}
+.ig-tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.ig-tile::after{
+  content:"";position:absolute;inset:0;background:rgba(7,31,56,.55);
+  opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;
+}
+.ig-tile:hover img{transform:scale(1.08)}
+.ig-tile:hover::after{opacity:1}
+.ig-tile .ig-ic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.4s;z-index:2}
+.ig-tile:hover .ig-ic{opacity:1}
+.ig-tile .ig-ic svg{width:30px;height:30px;color:var(--white)}
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+.contact{padding:120px 0 100px;background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.contact-info h2{margin-bottom:16px}
+.contact-info>p{color:var(--text-gray);margin-bottom:34px;max-width:440px}
+.contact-item{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--soft-gray)}
+.contact-item:last-child{border-bottom:none}
+.contact-item .ic{width:48px;height:48px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(217,165,46,.12)}
+.contact-item .ic svg{width:22px;height:22px;color:var(--gold)}
+.contact-item strong{display:block;font-size:.95rem;color:var(--navy)}
+.contact-item span{font-size:.86rem;color:var(--text-gray)}
+.contact-item .placeholder{font-size:.82rem;color:#9ca3af;font-style:italic}
+.contact-visual{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);height:460px;position:relative}
+.contact-visual img{width:100%;height:100%;object-fit:cover}
+.contact-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 50%,rgba(7,31,56,.45))}
+
+footer{background:var(--navy-dark);color:rgba(255,255,255,.7);padding:70px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:54px}
+.footer-brand .brand-text strong{color:var(--white)}
+.footer-brand p{font-size:.92rem;margin-top:16px;max-width:280px;color:rgba(255,255,255,.55)}
+.footer-brand .slogan{color:var(--gold-light);font-weight:700;margin-top:10px;font-size:.95rem}
+footer h4{color:var(--white);font-size:.95rem;margin-bottom:18px;letter-spacing:.05em}
+html[dir="rtl"] footer h4{font-family:var(--font-ar-head)}
+.footer-links li{margin-bottom:10px}
+.footer-links a{font-size:.9rem;color:rgba(255,255,255,.6);transition:color .3s,padding .3s;display:inline-block}
+html[dir="ltr"] .footer-links a:hover{color:var(--gold-light);padding-inline-start:6px}
+html[dir="rtl"] .footer-links a:hover{color:var(--gold-light);padding-inline-end:6px}
+.footer-contact li{display:flex;gap:10px;font-size:.88rem;margin-bottom:12px;color:rgba(255,255,255,.6);align-items:flex-start}
+.footer-contact svg{width:16px;height:16px;color:var(--gold);flex:none;margin-top:3px}
+.footer-social{display:flex;gap:12px;margin-top:6px}
+.footer-social a{
+  width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.07);transition:background .3s,transform .3s;
+}
+.footer-social a:hover{background:var(--gold);transform:translateY(-3px)}
+.footer-social svg{width:19px;height:19px;color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.45)}
+.footer-bottom .heart{color:var(--gold)}
+
+/* Back to top */
+.to-top{
+  position:fixed;bottom:26px;inset-inline-end:26px;width:48px;height:48px;border-radius:14px;border:none;cursor:pointer;
+  background:var(--navy);color:var(--gold-light);display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:.4s var(--ease);z-index:90;
+}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{transform:translateY(-4px);background:var(--navy-dark)}
+.to-top svg{width:20px;height:20px}
+html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-media img{height:420px}
+  .hero-media .frame{transform:none}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .activities-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:90px}
+  .masonry{columns:2}
+  .ig-strip{grid-template-columns:repeat(3,1fr)}
+  .involved-grid{grid-template-columns:1fr}
+  .involved-media{order:-1}
+  .involved-media img{height:340px}
+  .support-card{grid-template-columns:1fr}
+  .support-card .img{min-height:300px}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .nav-actions .btn{display:none}
+  .hamburger{display:block}
+}
+@media(max-width:640px){
+  .hero{padding-top:110px}
+  .hero-media img{height:320px}
+  .hero-badge{inset-inline-start:12px;bottom:14px;padding:12px 16px}
+  .values-grid,.activities-grid,.impact-statements{grid-template-columns:1fr}
+  .masonry{columns:1}
+  .ig-strip{grid-template-columns:repeat(2,1fr)}
+  .about-media .small-img{width:170px;height:130px;bottom:-28px;inset-inline-end:-10px}
+  .about-media .exp-badge{inset-inline-start:-8px;padding:14px 18px}
+  .support-card .body{padding:44px 28px}
+  .footer-grid{grid-template-columns:1fr}
+  .navbar{padding:14px 0}
+  .brand-text strong{font-size:.95rem}
+  .brand-text small{font-size:.72rem}
+  .brand-logo{height:42px}
+  .scroll-hint{display:none}
+  .contact-visual{height:340px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="#home">
+      <!--
+        LOGO: drop the official Basmat Inssan logo at  assets/logo.png
+        and it will be used automatically. Until then, an elegant
+        fingerprint-heart placeholder mark is shown.
+      -->
+      <img class="brand-logo" src="assets/logo.png" alt="Basmat Inssan logo"
+           onerror="this.style.display='none';document.getElementById('brandFallback').style.display='flex';">
+      <span class="brand-fallback" id="brandFallback" style="display:none">
+        <svg viewBox="0 0 48 48" width="30" height="30" fill="none" aria-hidden="true">
+          <path d="M24 42s-14-8.6-14-19.5C10 14.6 16.3 10 24 10s14 4.6 14 12.5C38 33.4 24 42 24 42z" stroke="#D9A52E" stroke-width="2.4" fill="rgba(217,165,46,.14)"/>
+          <path d="M17 22c1.5-3.5 4-5.5 7-5.5s5.5 2 7 5.5M19.5 26.5c1-2.3 2.7-3.7 4.5-3.7s3.5 1.4 4.5 3.7M22 30.5c.5-1.2 1.2-1.9 2-1.9s1.5.7 2 1.9" stroke="#D9A52E" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <strong>Basmat Inssan</strong>
+        <small>بصمة إنسان</small>
+      </span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#home" data-i18n="nav_home">Home</a>
+      <a href="#about" data-i18n="nav_about">About Us</a>
+      <a href="#activities" data-i18n="nav_activities">Our Activities</a>
+      <a href="#impact" data-i18n="nav_impact">Our Impact</a>
+      <a href="#involved" data-i18n="nav_involved">Get Involved</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button id="btnEN" class="active" type="button">EN</button>
+        <button id="btnAR" type="button">العربية</button>
+      </div>
+      <a href="#support" class="btn btn-gold btn-sm" data-i18n="nav_support">Support Us</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="#home" data-i18n="nav_home">Home</a>
+  <a href="#about" data-i18n="nav_about">About Us</a>
+  <a href="#activities" data-i18n="nav_activities">Our Activities</a>
+  <a href="#impact" data-i18n="nav_impact">Our Impact</a>
+  <a href="#involved" data-i18n="nav_involved">Get Involved</a>
+  <a href="#contact" data-i18n="nav_contact">Contact</a>
+  <a href="#support" class="btn btn-gold" data-i18n="nav_support">Support Us</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="hero-float f1"></div>
+  <div class="hero-float f2"></div>
+  <div class="container hero-grid">
+    <div class="hero-media reveal">
+      <div class="frame">
+        <img src="assets/hero-morocco.png" alt="A warm Moroccan community street bathed in golden light" data-i18n-alt="hero_img_alt">
+      </div>
+      <div class="hero-badge reveal reveal-d2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/><path d="M8.8 11.5c.8-1.9 2-2.9 3.2-2.9s2.4 1 3.2 2.9M10.3 13.6c.4-1 1.1-1.5 1.7-1.5s1.3.5 1.7 1.5"/></svg>
+        <div>
+          <strong data-i18n="hero_badge_t">Independent &amp; Youth-Led</strong>
+          <span data-i18n="hero_badge_s">A non-profit association from Morocco</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-copy">
+      <span class="hero-eyebrow reveal"><span class="dot"></span><span data-i18n="hero_eyebrow">Non-profit · Independent · Youth-led</span></span>
+      <h1 class="reveal reveal-d1">
+        <span data-i18n="hero_title_1">Spreading Hope.</span><br>
+        <span class="gold" data-i18n="hero_title_2">Creating Change.</span>
+      </h1>
+      <p class="lead reveal reveal-d2" data-i18n="hero_sub">Basmat Inssan is an independent youth-led non-profit association dedicated to supporting people in need and spreading hope, compassion and solidarity within our community.</p>
+      <div class="hero-cta reveal reveal-d3">
+        <a href="#about" class="btn btn-navy"><span data-i18n="hero_cta1">Discover Our Mission</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#involved" class="btn btn-outline" data-i18n="hero_cta2">Join Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="wheel"></div>
+    <span data-i18n="scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- ================= HUMAN MESSAGE ================= -->
+<section class="human">
+  <div class="container">
+    <svg class="fprint-ornament reveal" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M32 56s-18-11-18-25C14 14 22 8 32 8s18 6 18 23c0 14-18 25-18 25z" stroke-linecap="round"/>
+      <path d="M22 26c2-5 5.5-8 10-8s8 3 10 8M25.5 33c1.3-3.2 3.6-5.2 6.5-5.2s5.2 2 6.5 5.2M29 39.5c.6-1.6 1.7-2.6 3-2.6s2.4 1 3 2.6"/>
+    </svg>
+    <blockquote class="reveal reveal-d1" data-i18n="human_quote">Every person deserves <em>dignity</em>, <em>compassion</em> and a helping hand.</blockquote>
+    <p class="body reveal reveal-d2" data-i18n="human_body">At Basmat Inssan, we believe that meaningful change begins with simple human actions. Through volunteering, solidarity and community initiatives, we seek to support those who need it most.</p>
+    <div class="divider reveal reveal-d3"></div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <div class="exp-badge">
+          <strong data-i18n="about_badge_t">100%</strong>
+          <span data-i18n="about_badge_s">Volunteer-driven</span>
+        </div>
+        <div class="main-img"><img src="assets/hands-circle.png" alt="Many hands joined together in solidarity"></div>
+        <div class="small-img"><img src="assets/volunteers-group.png" alt="Young volunteers smiling together"></div>
+      </div>
+      <div class="about-text">
+        <div class="fprint-line reveal"><span class="line"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg>
+          <span class="kicker" data-i18n="about_kicker">Who We Are</span>
+        </div>
+        <h2 class="section-title reveal reveal-d1" data-i18n="about_title">A youth-led association with a human mark</h2>
+        <p class="reveal reveal-d1" data-i18n="about_p1">Basmat Inssan (بصمة إنسان — "a human fingerprint") is an independent, non-profit, youth-led association based in Morocco. Our name reflects our belief that every act of kindness leaves a lasting mark on a human life.</p>
+        <p class="reveal reveal-d2" data-i18n="about_p2">We exist to stand beside people in need — with dignity, warmth and solidarity — and to inspire a new generation to serve its community with love and responsibility.</p>
+        <ul class="about-points reveal reveal-d2">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="about_pt1">Independent &amp; non-profit by principle</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="about_pt2">Led by young people, for the whole community</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="about_pt3">Humanity first — always with dignity</span></li>
+        </ul>
+        <a href="#involved" class="btn btn-gold reveal reveal-d3"><span data-i18n="about_cta">Join Our Mission</span></a>
+      </div>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg></div>
+        <h3 data-i18n="val1_t">Compassion</h3>
+        <p data-i18n="val1_p">We lead with empathy, meeting every person with warmth and care.</p>
+      </div>
+      <div class="value-card reveal reveal-d1">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 data-i18n="val2_t">Solidarity</h3>
+        <p data-i18n="val2_p">We stand together — no one faces hardship alone.</p>
+      </div>
+      <div class="value-card reveal reveal-d2">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
+        <h3 data-i18n="val3_t">Human Dignity</h3>
+        <p data-i18n="val3_p">Every person deserves to be seen, respected and valued.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3 data-i18n="val4_t">Youth Engagement</h3>
+        <p data-i18n="val4_p">We believe in the energy and vision of young people to drive change.</p>
+      </div>
+      <div class="value-card reveal reveal-d1">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3 data-i18n="val5_t">Community Service</h3>
+        <p data-i18n="val5_p">We serve our community with commitment, humility and consistency.</p>
+      </div>
+      <div class="value-card reveal reveal-d2">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M18.4 5.6 17 7M21 12h-2M8 21h8M9 17a5 5 0 1 1 6 0c-.8.6-1 1.5-1 2.5h-4c0-1-.2-1.9-1-2.5z"/></svg></div>
+        <h3 data-i18n="val6_t">Hope</h3>
+        <p data-i18n="val6_p">We carry hope to those who need it most — and we never give up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACTIVITIES ================= -->
+<section class="activities" id="activities">
+  <div class="container">
+    <div class="fprint-line reveal"><span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg>
+      <span class="kicker" data-i18n="act_kicker">Our Activities</span>
+    </div>
+    <h2 class="section-title reveal reveal-d1" data-i18n="act_title">Where help meets action</h2>
+    <p class="section-lead reveal reveal-d2" data-i18n="act_lead">Our initiatives grow from the real needs of our community. Each activity is a small fingerprint of kindness — and together, they leave a human mark.</p>
+
+    <!-- NOTE: replace titles/descriptions/images below with the organization's confirmed activities -->
+    <div class="activities-grid">
+      <article class="activity-card reveal">
+        <div class="thumb"><img src="assets/volunteers-group.png" alt="Young volunteers together"></div>
+        <div class="body">
+          <span class="num" data-i18n="act1_n">01</span>
+          <h3 data-i18n="act1_t">Community Support</h3>
+          <p data-i18n="act1_p">Standing beside our neighbours through local initiatives that respond to real, everyday needs.</p>
+          <span class="more"><span data-i18n="act_more">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="activity-card reveal reveal-d1">
+        <div class="thumb"><img src="assets/food-bank.png" alt="Volunteers packing food donation boxes"></div>
+        <div class="body">
+          <span class="num" data-i18n="act2_n">02</span>
+          <h3 data-i18n="act2_t">Food Distribution</h3>
+          <p data-i18n="act2_p">Collecting and sharing food supplies with families and individuals facing difficult times.</p>
+          <span class="more"><span data-i18n="act_more2">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="activity-card reveal reveal-d2">
+        <div class="thumb"><img src="assets/child-hope.png" alt="A helping hand reaching out to a child"></div>
+        <div class="body">
+          <span class="num" data-i18n="act3_n">03</span>
+          <h3 data-i18n="act3_t">Support for Families in Need</h3>
+          <p data-i18n="act3_p">Reaching out to families with care, attention and practical help — always with dignity.</p>
+          <span class="more"><span data-i18n="act_more3">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="activity-card reveal">
+        <div class="thumb"><img src="assets/elderly-care.png" alt="Caring hands holding an elderly person's hands"></div>
+        <div class="body">
+          <span class="num" data-i18n="act4_n">04</span>
+          <h3 data-i18n="act4_t">Aid &amp; Solidarity</h3>
+          <p data-i18n="act4_p">Showing up for the elderly, the vulnerable and anyone who needs a hand to hold.</p>
+          <span class="more"><span data-i18n="act_more4">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="activity-card reveal reveal-d1">
+        <div class="thumb"><img src="assets/volunteer-park.png" alt="A smiling young volunteer in a park"></div>
+        <div class="body">
+          <span class="num" data-i18n="act5_n">05</span>
+          <h3 data-i18n="act5_t">Volunteer Initiatives</h3>
+          <p data-i18n="act5_p">Mobilizing young people to serve, give their time and grow through meaningful action.</p>
+          <span class="more"><span data-i18n="act_more5">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="activity-card reveal reveal-d2">
+        <div class="thumb"><img src="assets/community-meals.png" alt="Serving warm meals to the community"></div>
+        <div class="body">
+          <span class="num" data-i18n="act6_n">06</span>
+          <h3 data-i18n="act6_t">Community Outreach</h3>
+          <p data-i18n="act6_p">Meeting people where they are — building bonds, trust and a stronger community.</p>
+          <span class="more"><span data-i18n="act_more6">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+    </div>
+    <p class="activities-note reveal" data-i18n="act_note">This section will be updated with Basmat Inssan's confirmed activities and real photos.</p>
+  </div>
+</section>
+
+<!-- ================= IMPACT ================= -->
+<section class="impact" id="impact">
+  <div class="container">
+    <div class="fprint-line reveal" style="justify-content:center"><span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg>
+      <span class="kicker" data-i18n="imp_kicker">Our Impact</span>
+    </div>
+    <h2 class="section-title reveal reveal-d1" data-i18n="imp_title">Small acts, lasting marks</h2>
+    <p class="section-lead reveal reveal-d2" style="margin-inline:auto" data-i18n="imp_lead">We don't measure our work only in numbers — we measure it in moments of relief, in smiles, and in the quiet knowledge that someone cared.</p>
+
+    <div class="impact-statements">
+      <div class="impact-card reveal">
+        <span class="quote-mark">"</span>
+        <p data-i18n="imp_s1">Every helping hand matters.</p>
+      </div>
+      <div class="impact-card reveal reveal-d1">
+        <span class="quote-mark">"</span>
+        <p data-i18n="imp_s2">Every act of kindness can become someone's hope.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+
+
+<!-- ================= GET INVOLVED ================= -->
+<section class="involved" id="involved">
+  <div class="involved-wrap">
+    <div class="container involved-grid">
+      <div>
+        <div class="fprint-line reveal"><span class="line"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:#E8C15A"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg>
+          <span class="kicker" data-i18n="inv_kicker" style="color:#E8C15A">Get Involved</span>
+        </div>
+        <h2 class="reveal reveal-d1" data-i18n="inv_title">Be Part of the Change</h2>
+        <p class="lead reveal reveal-d2" data-i18n="inv_lead">Your time, your skills and your kindness can make a difference.</p>
+        <div class="involved-cta reveal reveal-d2">
+          <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" class="btn btn-gold" data-i18n="inv_cta1">Volunteer With Us</a>
+          <a href="#support" class="btn btn-ghost-light" data-i18n="inv_cta2">Support Our Mission</a>
+        </div>
+        <div class="involved-steps reveal reveal-d3">
+          <div class="step"><span class="n">1</span><span data-i18n="inv_st1">Reach out to us through Instagram</span></div>
+          <div class="step"><span class="n">2</span><span data-i18n="inv_st2">Choose how you want to help</span></div>
+          <div class="step"><span class="n">3</span><span data-i18n="inv_st3">Leave your own human mark</span></div>
+        </div>
+      </div>
+      <div class="involved-media reveal reveal-d1">
+        <img src="assets/volunteer-park.png" alt="A young volunteer smiling during community work">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SUPPORT ================= -->
+
+
+<!-- ================= INSTAGRAM ================= -->
+<section class="instagram" id="instagram">
+  <div class="container">
+    <div class="fprint-line reveal" style="justify-content:center"><span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg>
+      <span class="kicker" data-i18n="ig_kicker">Follow Our Journey</span>
+    </div>
+    <h2 class="section-title reveal reveal-d1" data-i18n="ig_title">Our story unfolds every day</h2>
+    <a class="ig-handle reveal reveal-d2" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+      @basmatinssan
+    </a>
+    <div class="ig-strip">
+      <a class="ig-tile reveal" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/food-bank.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
+      <a class="ig-tile reveal reveal-d1" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/community-meals.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
+      <a class="ig-tile reveal reveal-d2" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/volunteers-group.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
+      <a class="ig-tile reveal reveal-d1" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/packing-food.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
+      <a class="ig-tile reveal reveal-d2" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/hero-morocco.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
+    </div>
+    <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" class="btn btn-navy reveal"><span data-i18n="ig_cta">Follow us on Instagram</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <div class="fprint-line reveal"><span class="line"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/></svg>
+        <span class="kicker" data-i18n="ct_kicker">Contact</span>
+      </div>
+      <h2 class="section-title reveal reveal-d1" data-i18n="ct_title">Let's leave a mark together</h2>
+      <p class="reveal reveal-d2" data-i18n="ct_p">Have an idea, a question, or a heart ready to help? We'd love to hear from you.</p>
+      <div class="reveal reveal-d2">
+        <div class="contact-item">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
+          <div><strong data-i18n="ct_email">Email</strong><span class="placeholder" data-i18n="ct_email_ph">[Official email — to be added]</span></div>
+        </div>
+        <div class="contact-item">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><strong data-i18n="ct_phone">Phone</strong><span class="placeholder" data-i18n="ct_phone_ph">[Official phone — to be added]</span></div>
+        </div>
+        <div class="contact-item">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><strong data-i18n="ct_loc">Location</strong><span data-i18n="ct_loc_v">Morocco</span></div>
+        </div>
+        <div class="contact-item">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+          <div><strong>Instagram</strong><a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" style="color:var(--gold);font-weight:700">@basmatinssan</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-visual reveal reveal-d1">
+      <img src="assets/hands-circle.png" alt="Hands joined together">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home">
+          <img class="brand-logo" src="assets/logo.png" alt="Basmat Inssan logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <span class="brand-fallback" style="display:none">
+            <svg viewBox="0 0 48 48" width="26" height="26" fill="none" aria-hidden="true">
+              <path d="M24 42s-14-8.6-14-19.5C10 14.6 16.3 10 24 10s14 4.6 14 12.5C38 33.4 24 42 24 42z" stroke="#D9A52E" stroke-width="2.4" fill="rgba(217,165,46,.14)"/>
+              <path d="M17 22c1.5-3.5 4-5.5 7-5.5s5.5 2 7 5.5M19.5 26.5c1-2.3 2.7-3.7 4.5-3.7s3.5 1.4 4.5 3.7M22 30.5c.5-1.2 1.2-1.9 2-1.9s1.5.7 2 1.9" stroke="#D9A52E" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>Basmat Inssan</strong>
+            <small>بصمة إنسان</small>
+          </span>
+        </a>
+        <p data-i18n="ft_p">An independent, youth-led non-profit association based in Morocco, serving people in need with compassion and solidarity.</p>
+        <p class="slogan" data-i18n="ft_slogan">Spreading hope. Creating change.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="ft_links">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home" data-i18n="nav_home">Home</a></li>
+          <li><a href="#about" data-i18n="nav_about">About Us</a></li>
+          <li><a href="#activities" data-i18n="nav_activities">Our Activities</a></li>
+          <li><a href="#impact" data-i18n="nav_impact">Our Impact</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="ft_getinv">Get Involved</h4>
+        <ul class="footer-links">
+          <li><a href="#involved" data-i18n="nav_involved">Get Involved</a></li>
+          <li><a href="#support" data-i18n="nav_support">Support Us</a></li>
+          <li><a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" data-i18n="ft_ig">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="ft_contact">Contact</h4>
+        <ul class="footer-contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 8.5 6 8.5-6"/></svg><span class="placeholder" data-i18n="ct_email_ph2">[Official email — to be added]</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span class="placeholder" data-i18n="ct_phone_ph2">[Official phone — to be added]</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="ct_loc_v">Morocco</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="ft_rights">© 2026 Basmat Inssan. All rights reserved.</span>
+      <span><span data-i18n="ft_made">Made with</span> <span class="heart">♥</span> <span data-i18n="ft_morocco">in Morocco</span></span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+</button>
+
+<script>
+/* ============================================================
+   i18n — English & Arabic dictionaries
+   ============================================================ */
+const I18N = {
+en:{
+  nav_home:"Home",nav_about:"About Us",nav_activities:"Our Activities",nav_impact:"Our Impact",
+  nav_involved:"Get Involved",nav_contact:"Contact",nav_support:"Support Us",
+  hero_eyebrow:"Non-profit · Independent · Youth-led",
+  hero_title_1:"Spreading Hope.",hero_title_2:"Creating Change.",
+  hero_sub:"Basmat Inssan is an independent youth-led non-profit association dedicated to supporting people in need and spreading hope, compassion and solidarity within our community.",
+  hero_cta1:"Discover Our Mission",hero_cta2:"Join Us",
+  hero_badge_t:"Independent & Youth-Led",hero_badge_s:"A non-profit association from Morocco",
+  scroll:"Scroll",
+  human_quote:'Every person deserves <em>dignity</em>, <em>compassion</em> and a helping hand.',
+  human_body:"At Basmat Inssan, we believe that meaningful change begins with simple human actions. Through volunteering, solidarity and community initiatives, we seek to support those who need it most.",
+  about_kicker:"Who We Are",about_title:"A youth-led association with a human mark",
+  about_p1:'Basmat Inssan (بصمة إنسان — "a human fingerprint") is an independent, non-profit, youth-led association based in Morocco. Our name reflects our belief that every act of kindness leaves a lasting mark on a human life.',
+  about_p2:"We exist to stand beside people in need — with dignity, warmth and solidarity — and to inspire a new generation to serve its community with love and responsibility.",
+  about_pt1:"Independent & non-profit by principle",about_pt2:"Led by young people, for the whole community",about_pt3:"Humanity first — always with dignity",
+  about_cta:"Join Our Mission",about_badge_t:"100%",about_badge_s:"Volunteer-driven",
+  val1_t:"Compassion",val1_p:"We lead with empathy, meeting every person with warmth and care.",
+  val2_t:"Solidarity",val2_p:"We stand together — no one faces hardship alone.",
+  val3_t:"Human Dignity",val3_p:"Every person deserves to be seen, respected and valued.",
+  val4_t:"Youth Engagement",val4_p:"We believe in the energy and vision of young people to drive change.",
+  val5_t:"Community Service",val5_p:"We serve our community with commitment, humility and consistency.",
+  val6_t:"Hope",val6_p:"We carry hope to those who need it most — and we never give up.",
+  act_kicker:"Our Activities",act_title:"Where help meets action",
+  act_lead:"Our initiatives grow from the real needs of our community. Each activity is a small fingerprint of kindness — and together, they leave a human mark.",
+  act1_n:"01",act1_t:"Community Support",act1_p:"Standing beside our neighbours through local initiatives that respond to real, everyday needs.",
+  act2_n:"02",act2_t:"Food Distribution",act2_p:"Collecting and sharing food supplies with families and individuals facing difficult times.",
+  act3_n:"03",act3_t:"Support for Families in Need",act3_p:"Reaching out to families with care, attention and practical help — always with dignity.",
+  act4_n:"04",act4_t:"Aid & Solidarity",act4_p:"Showing up for the elderly, the vulnerable and anyone who needs a hand to hold.",
+  act5_n:"05",act5_t:"Volunteer Initiatives",act5_p:"Mobilizing young people to serve, give their time and grow through meaningful action.",
+  act6_n:"06",act6_t:"Community Outreach",act6_p:"Meeting people where they are — building bonds, trust and a stronger community.",
+  act_more:"Learn More",act_more2:"Learn More",act_more3:"Learn More",act_more4:"Learn More",act_more5:"Learn More",act_more6:"Learn More",
+  act_note:"This section will be updated with Basmat Inssan's confirmed activities and real photos.",
+  imp_kicker:"Our Impact",imp_title:"Small acts, lasting marks",
+  imp_lead:"We don't measure our work only in numbers — we measure it in moments of relief, in smiles, and in the quiet knowledge that someone cared.",
+  imp_s1:"Every helping hand matters.",imp_s2:"Every act of kindness can become someone's hope.",
+  imp_banner_t:"Real stories. Real people. Real change.",imp_banner_p:"Our impact statistics will be published here as soon as they are officially confirmed.",
+  gal_kicker:"Moments of Solidarity",gal_title:"The beauty of giving, captured",
+  gal_lead:"Glimpses of the human moments that inspire our journey — to be replaced with photos from Basmat Inssan's real activities.",
+  gal_c1:"Our community, our home",gal_c2:"Hands that give",gal_c3:"Youth in action",gal_c4:"Solidarity at work",gal_c5:"Hope has small hands",gal_c6:"No one left behind",
+  inv_kicker:"Get Involved",inv_title:"Be Part of the Change",
+  inv_lead:"Your time, your skills and your kindness can make a difference.",
+  inv_cta1:"Volunteer With Us",inv_cta2:"Support Our Mission",
+  inv_st1:"Reach out to us through Instagram",inv_st2:"Choose how you want to help",inv_st3:"Leave your own human mark",
+  sup_kicker:"Support a Human Cause",sup_title:"Together, we can keep the light on",
+  sup_p:"Whether through volunteering, sharing our mission or supporting our initiatives, every contribution can help us continue spreading hope and compassion.",
+  sup_w1:"Volunteer your time and energy",sup_w2:"Share our story with your community",sup_w3:"Support our initiatives and campaigns",
+  sup_cta:"Support Basmat Inssan",sup_fine:"Official donation channels will be announced here once confirmed.",
+  ig_kicker:"Follow Our Journey",ig_title:"Our story unfolds every day",ig_cta:"Follow us on Instagram",
+  ct_kicker:"Contact",ct_title:"Let's leave a mark together",
+  ct_p:"Have an idea, a question, or a heart ready to help? We'd love to hear from you.",
+  ct_email:"Email",ct_email_ph:"[Official email — to be added]",ct_phone:"Phone",ct_phone_ph:"[Official phone — to be added]",
+  ct_loc:"Location",ct_loc_v:"Morocco",
+  ft_p:"An independent, youth-led non-profit association based in Morocco, serving people in need with compassion and solidarity.",
+  ft_slogan:"Spreading hope. Creating change.",ft_links:"Quick Links",ft_getinv:"Get Involved",ft_contact:"Contact",ft_ig:"Instagram",
+  ct_email_ph2:"[Official email — to be added]",ct_phone_ph2:"[Official phone — to be added]",
+  ft_rights:"© 2026 Basmat Inssan. All rights reserved.",ft_made:"Made with",ft_morocco:"in Morocco"
+},
+ar:{
+  nav_home:"الرئيسية",nav_about:"من نحن",nav_activities:"أنشطتنا",nav_impact:"أثرنا",
+  nav_involved:"ساهم معنا",nav_contact:"تواصل معنا",nav_support:"ادعمنا",
+  hero_eyebrow:"جمعية غير ربحية · مستقلة · يقودها الشباب",
+  hero_title_1:"ننشر الأمل،",hero_title_2:"ونصنع التغيير.",
+  hero_sub:"بصمة إنسان جمعية مستقلة غير ربحية يقودها الشباب، تهدف إلى مساعدة المحتاجين ونشر الأمل والتعاطف والتضامن داخل المجتمع.",
+  hero_cta1:"اكتشف رسالتنا",hero_cta2:"انضم إلينا",
+  hero_badge_t:"مستقلة ويقودها الشباب",hero_badge_s:"جمعية غير ربحية من المغرب",
+  scroll:"مرّر للأسفل",
+  human_quote:'كل إنسان يستحق <em>الكرامة</em>، و<em>الرحمة</em>، ويدًا تمتد إليه.',
+  human_body:"في بصمة إنسان، نؤمن بأن التغيير الحقيقي يبدأ من أفعال إنسانية بسيطة. ومن خلال التطوع والتضامن والمبادرات المجتمعية، نسعى إلى مساندة من هم في أمسّ الحاجة إلى الدعم.",
+  about_kicker:"من نحن؟",about_title:"جمعية شبابية تترك أثرًا إنسانيًا",
+  about_p1:'بصمة إنسان جمعية مستقلة غير ربحية يقودها الشباب، مقرها المغرب. ويعكس اسمنا إيماننا بأن كل عمل خير يترك بصمة إنسانية تدوم في حياة الناس.',
+  about_p2:"نحن هنا لنقف إلى جانب المحتاجين — بكرامة ودفء وتضامن — ولنلهم جيلًا جديدًا ليخدم مجتمعه بحب ومسؤولية.",
+  about_pt1:"مستقلة وغير ربحية بمبدأ",about_pt2:"يقودها الشباب من أجل المجتمع كله",about_pt3:"الإنسان أولاً — ودائمًا بكرامة",
+  about_cta:"انضم إلى رسالتنا",about_badge_t:"100%",about_badge_s:"عمل تطوعي",
+  val1_t:"الرحمة",val1_p:"نتعامل بإحساس مرهف، ونلاقي كل إنسان بالدفء والعناية.",
+  val2_t:"التضامن",val2_p:"نقف معًا — فلا أحد يواجه الشدائد وحده.",
+  val3_t:"الكرامة الإنسانية",val3_p:"كل إنسان يستحق أن يُرى، وأن يُحترم، وأن يُقدَّر.",
+  val4_t:"مشاركة الشباب",val4_p:"نؤمن بطاقة ورؤية الشباب لصناعة التغيير.",
+  val5_t:"خدمة المجتمع",val5_p:"نخدم مجتمعنا بالالتزام والتواضع والاستمرارية.",
+  val6_t:"الأمل",val6_p:"نحمل الأمل لمن هم في أمسّ الحاجة إليه — ولا نستسلم أبدًا.",
+  act_kicker:"أنشطتنا",act_title:"حيث يلتقي العون بالعمل",
+  act_lead:"تنبثق مبادراتنا من احتياجات مجتمعنا الحقيقية. كل نشاط هو بصمة خير صغيرة — ومجتمعةً، تترك أثرًا إنسانيًا.",
+  act1_n:"01",act1_t:"الدعم المجتمعي",act1_p:"الوقوف إلى جانب جيراننا من خلال مبادرات محلية تستجيب لاحتياجات حقيقية يومية.",
+  act2_n:"02",act2_t:"توزيع المواد الغذائية",act2_p:"جمع المواد الغذائية ومشاركتها مع الأسر والأفراد الذين يمرون بأوقات صعبة.",
+  act3_n:"03",act3_t:"دعم الأسر المحتاجة",act3_p:"مدّ يد العون للأسر بالاهتمام والمساعدة العملية — ودائمًا بكرامة.",
+  act4_n:"04",act4_t:"المساعدة والتضامن",act4_p:"الحضور إلى جانب كبار السن والفئات الهشة وكل من يحتاج إلى يدٍ تمتد إليه.",
+  act5_n:"05",act5_t:"المبادرات التطوعية",act5_p:"تحشيد الشباب للتطوع وبذل الوقت والنمو من خلال أفعال هادفة.",
+  act6_n:"06",act6_t:"التواصل المجتمعي",act6_p:"الوصول إلى الناس حيث هم — لبناء علاقات وثقة ومجتمع أقوى.",
+  act_more:"اعرف المزيد",act_more2:"اعرف المزيد",act_more3:"اعرف المزيد",act_more4:"اعرف المزيد",act_more5:"اعرف المزيد",act_more6:"اعرف المزيد",
+  act_note:"سيتم تحديث هذا القسم بأنشطة بصمة إنسان الحقيقية وصورها الفعلية.",
+  imp_kicker:"أثرنا",imp_title:"أفعال صغيرة، وآثار تدوم",
+  imp_lead:"لا نقيس عملنا بالأرقام فحسب — بل بلحظات الارتياح، والابتسامات، وشعور هادئ بأن هناك من اهتم.",
+  imp_s1:"كل يدٍ تمتد بالعون لها أثر.",imp_s2:"كل عمل خير يمكن أن يصبح أملاً لشخص آخر.",
+  imp_banner_t:"قصص حقيقية. أناس حقيقيون. تغيير حقيقي.",imp_banner_p:"سيتم نشر إحصائيات أثرنا هنا فور اعتمادها رسميًا.",
+  gal_kicker:"لحظات من التضامن",gal_title:"جمال العطاء في صور",
+  gal_lead:"لمحات من اللحظات الإنسانية التي تلهم مسيرتنا — وستُستبدل لاحقًا بصور من أنشطة بصمة إنسان الحقيقية.",
+  gal_c1:"مجتمعنا، وطننا",gal_c2:"أيادٍ تعطي",gal_c3:"شباب في العمل",gal_c4:"التضامن في ميدان العمل",gal_c5:"للأمل أيادٍ صغيرة",gal_c6:"لا نترك أحدًا خلفنا",
+  inv_kicker:"ساهم معنا",inv_title:"كن جزءًا من التغيير",
+  inv_lead:"وقتك، ومهاراتك، وإنسانيتك يمكن أن تصنع فرقًا.",
+  inv_cta1:"تطوع معنا",inv_cta2:"ساند رسالتنا",
+  inv_st1:"تواصل معنا عبر إنستغرام",inv_st2:"اختر كيف تريد أن تساهم",inv_st3:"اترك بصمتك الإنسانية الخاصة",
+  sup_kicker:"ساند قضية إنسانية",sup_title:"معًا، نُبقي النور مشتعلًا",
+  sup_p:"سواء من خلال التطوع، أو مشاركة رسالتنا، أو دعم مبادراتنا، فإن كل مساهمة يمكن أن تساعدنا على مواصلة نشر الأمل والتعاطف.",
+  sup_w1:"تطوع بوقتك وطاقتك",sup_w2:"شارك قصتنا مع مجتمعك",sup_w3:"ادعم مبادراتنا وحملاتنا",
+  sup_cta:"ادعم بصمة إنسان",sup_fine:"سيتم الإعلان عن قنوات التبرع الرسمية هنا فور اعتمادها.",
+  ig_kicker:"تابعوا مسيرتنا",ig_title:"قصتنا تتجدد كل يوم",ig_cta:"تابعونا على إنستغرام",
+  ct_kicker:"تواصل معنا",ct_title:"لنترك معًا بصمة إنسانية",
+  ct_p:"لديك فكرة، أو سؤال، أو قلبٌ مستعد للمساعدة؟ يسعدنا أن نسمع منك.",
+  ct_email:"البريد الإلكتروني",ct_email_ph:"[البريد الرسمي — سيُضاف قريبًا]",ct_phone:"الهاتف",ct_phone_ph:"[الهاتف الرسمي — سيُضاف قريبًا]",
+  ct_loc:"الموقع",ct_loc_v:"المغرب",
+  ft_p:"جمعية مستقلة غير ربحية يقودها الشباب ومقرها المغرب، تخدم المحتاجين بالتعاطف والتضامن.",
+  ft_slogan:"ننشر الأمل، ونصنع التغيير.",ft_links:"روابط سريعة",ft_getinv:"شارك معنا",ft_contact:"تواصل",ft_ig:"إنستغرام",
+  ct_email_ph2:"[البريد الرسمي — سيُضاف قريبًا]",ct_phone_ph2:"[الهاتف الرسمي — سيُضاف قريبًا]",
+  ft_rights:"© 2026 بصمة إنسان. جميع الحقوق محفوظة.",ft_made:"صُنع بـ",ft_morocco:"في المغرب"
+}};
+
+function setLang(lang){
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+  document.title = lang === 'ar'
+    ? 'بصمة إنسان | Basmat Inssan — ننشر الأمل، ونصنع التغيير'
+    : 'Basmat Inssan | بصمة إنسان — Spreading Hope. Creating Change.';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    if(dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.getElementById('btnEN').classList.toggle('active', lang==='en');
+  document.getElementById('btnAR').classList.toggle('active', lang==='ar');
+  try{ localStorage.setItem('basmat-lang', lang); }catch(e){}
+  // Re-observe reveals already in view (no-op) and refresh nav offset
+  closeMenu();
+}
+document.getElementById('btnEN').addEventListener('click', ()=>setLang('en'));
+document.getElementById('btnAR').addEventListener('click', ()=>setLang('ar'));
+
+/* ============================================================
+   Navbar / scroll behavior
+   ============================================================ */
+const navbar = document.getElementById('navbar');
+const toTop  = document.getElementById('toTop');
+function onScroll(){
+  const y = window.scrollY;
+  navbar.classList.toggle('scrolled', y > 40);
+  toTop.classList.toggle('show', y > 600);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ============================================================
+   Mobile menu
+   ============================================================ */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+function closeMenu(){
+  mobileMenu.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  document.body.style.overflow = '';
+}
+hamburger.addEventListener('click', ()=>{
+  const open = mobileMenu.classList.toggle('open');
+  document.body.classList.toggle('menu-open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.getElementById('mobileClose').addEventListener('click', closeMenu);
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+/* ============================================================
+   Reveal on scroll
+   ============================================================ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* Init language (persisted or browser default) */
+(function(){
+  let lang = 'en';
+  try{ lang = localStorage.getItem('basmat-lang') || ((navigator.language||'').startsWith('ar') ? 'ar' : 'en'); }catch(e){}
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
