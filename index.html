@@ -124,7 +124,7 @@ html[dir="rtl"] .kicker{letter-spacing:.02em;font-size:.9rem}
 .brand-text{display:flex;flex-direction:column;line-height:1.15}
 .brand-text strong{font-size:1.06rem;font-weight:800;color:var(--navy)}
 .brand-text small{font-size:.82rem;color:var(--gold);font-weight:700}
-.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;align-items:center;gap:10px}
 .nav-links a{
   padding:9px 14px;border-radius:10px;font-weight:600;font-size:.94rem;color:var(--navy);
   transition:color .3s,background .3s;position:relative;
@@ -246,7 +246,7 @@ html[dir="rtl"] .human blockquote{font-family:var(--font-ar-head);line-height:1.
 .human blockquote em{font-style:normal;color:var(--gold)}
 .human .body{max-width:680px;margin:0 auto;color:var(--text-gray);font-size:1.08rem}
 .human .divider{width:120px;height:3px;margin:34px auto 0;border-radius:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.fprint-ornament{width:64px;height:64px;margin:0 auto 30px;color:var(--gold);opacity:.9}
+.fprint-ornament{width:76px;height:76px;object-fit:contain;margin:0 auto 30px;opacity:.9}
 
 /* ============================================================
    ABOUT
@@ -492,6 +492,7 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.7);padding:70px 0 0}
 .footer-brand .brand-text strong{color:var(--white)}
 .footer-brand p{font-size:.92rem;margin-top:16px;max-width:280px;color:rgba(255,255,255,.55)}
 .footer-brand .slogan{color:var(--gold-light);font-weight:700;margin-top:10px;font-size:.95rem}
+.footer-brand .slogan::after{content:" ...";color:var(--gold);white-space:nowrap}
 footer h4{color:var(--white);font-size:.95rem;margin-bottom:18px;letter-spacing:.05em}
 html[dir="rtl"] footer h4{font-family:var(--font-ar-head)}
 .footer-links li{margin-bottom:10px}
@@ -604,7 +605,6 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
         <button id="btnEN" class="active" type="button">EN</button>
         <button id="btnAR" type="button">العربية</button>
       </div>
-      <a href="#support" class="btn btn-gold btn-sm" data-i18n="nav_support">Support Us</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -647,8 +647,8 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
     <div class="hero-copy">
       <span class="hero-eyebrow reveal"><span class="dot"></span><span data-i18n="hero_eyebrow">Non-profit · Independent · Youth-led</span></span>
       <h1 class="reveal reveal-d1">
-        <span data-i18n="hero_title_1">A Human Mark.</span><br>
-        <span class="gold" data-i18n="hero_title_2">A Lasting Impact.</span>
+        <span data-i18n="hero_title_1">A Human Mark,</span><br>
+        <span class="gold" data-i18n="hero_title_2">A Lasting Impact...</span>
       </h1>
       <p class="lead reveal reveal-d2" data-i18n="hero_sub">Basmat Inssan is an independent youth-led non-profit association dedicated to supporting people in need and spreading hope, compassion and solidarity within our community.</p>
       <div class="hero-cta reveal reveal-d3">
@@ -666,10 +666,7 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
 <!-- ================= HUMAN MESSAGE ================= -->
 <section class="human">
   <div class="container">
-    <svg class="fprint-ornament reveal" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path d="M32 56s-18-11-18-25C14 14 22 8 32 8s18 6 18 23c0 14-18 25-18 25z" stroke-linecap="round"/>
-      <path d="M22 26c2-5 5.5-8 10-8s8 3 10 8M25.5 33c1.3-3.2 3.6-5.2 6.5-5.2s5.2 2 6.5 5.2M29 39.5c.6-1.6 1.7-2.6 3-2.6s2.4 1 3 2.6"/>
-    </svg>
+    <img class="fprint-ornament reveal" src="LOGO.jpg" alt="Basmat Inssan logo">
     <blockquote class="reveal reveal-d1" data-i18n="human_quote">Every person deserves <em>dignity</em>, <em>compassion</em> and a helping hand.</blockquote>
     <p class="body reveal reveal-d2" data-i18n="human_body">At Basmat Inssan, we believe that meaningful change begins with simple human actions. Through volunteering, solidarity and community initiatives, we seek to support those who need it most.</p>
     <div class="divider reveal reveal-d3"></div>
@@ -947,7 +944,7 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
           </span>
         </a>
         <p data-i18n="ft_p">An independent, youth-led non-profit association based in Morocco, serving people in need with compassion and solidarity.</p>
-        <p class="slogan" data-i18n="ft_slogan">Spreading hope. Creating change.</p>
+        <p class="slogan" data-i18n="ft_slogan">A Human Mark. A Lasting Impact.</p>
         <div class="footer-social">
           <a href="https://www.tiktok.com/@basmatinssan01?_r=1&_t=ZS-9ALAMLYPeHU" target="_blank" rel="noopener" aria-label="TikTok">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.4v13.67a2.9 2.9 0 0 1-2.9 2.9 2.9 2.9 0 1 1 2.9-2.9V12.2a6.3 6.3 0 1 0 3.4 5.6V9.86a8.16 8.16 0 0 0 4.77 1.53V8a4.85 4.85 0 0 1-1-.11z"/></svg>
@@ -1005,7 +1002,7 @@ en:{
   nav_home:"Home",nav_about:"About Us",nav_activities:"Our Activities",nav_impact:"Our Impact",
   nav_involved:"Get Involved",nav_contact:"Contact",nav_support:"Support Us",
   hero_eyebrow:"Non-profit · Independent · Youth-led",
-  hero_title_1:"A Human Mark.",hero_title_2:"A Lasting Impact.",
+  hero_title_1:"A Human Mark,",hero_title_2:"A Lasting Impact...",
   hero_sub:"Basmat Inssan is an independent youth-led non-profit association dedicated to supporting people in need and spreading hope, compassion and solidarity within our community.",
   hero_cta1:"Discover Our Mission",hero_cta2:"Join Us",
   hero_badge_t:"Independent & Youth-Led",hero_badge_s:"A non-profit association from Morocco",
@@ -1054,7 +1051,7 @@ en:{
   ct_email:"Email",ct_email_ph:"basmatinssan01@gmail.com",ct_phone:"Phone",ct_phone_ph:"+212 650 588597",
   ct_loc:"Location",ct_loc_v:"Morocco, Marrakesh",
   ft_p:"An independent, youth-led non-profit association based in Morocco, serving people in need with compassion and solidarity.",
-  ft_slogan:"Spreading hope. Creating change.",ft_links:"Quick Links",ft_getinv:"Get Involved",ft_contact:"Contact",ft_ig:"Instagram",
+  ft_slogan:"A Human Mark. A Lasting Impact.",ft_links:"Quick Links",ft_getinv:"Get Involved",ft_contact:"Contact",ft_ig:"Instagram",
   ct_email_ph2:"basmatinssan01@gmail.com",ct_phone_ph2:"+212 650 588597",
   ft_rights:"© 2026 Basmat Inssan. All rights reserved.",ft_made:"Made with",ft_morocco:"in Morocco"
 },
@@ -1062,7 +1059,7 @@ ar:{
   nav_home:"الرئيسية",nav_about:"من نحن",nav_activities:"أنشطتنا",nav_impact:"أثرنا",
   nav_involved:"ساهم معنا",nav_contact:"تواصل معنا",nav_support:"ادعمنا",
   hero_eyebrow:"جمعية غير ربحية · مستقلة · يقودها الشباب",
-  hero_title_1:"بصمة إنسان",hero_title_2:"أثر يبقى",
+  hero_title_1:"بصمة إنسان،",hero_title_2:"أثر يبقى...",
   hero_sub:"بصمة إنسان جمعية مستقلة غير ربحية يقودها الشباب، تهدف إلى مساعدة المحتاجين ونشر الأمل والتعاطف والتضامن داخل المجتمع.",
   hero_cta1:"اكتشف رسالتنا",hero_cta2:"انضم إلينا",
   hero_badge_t:"مستقلة ويقودها الشباب",hero_badge_s:"جمعية غير ربحية من المغرب",
@@ -1111,7 +1108,7 @@ ar:{
   ct_email:"البريد الإلكتروني",ct_email_ph:"basmatinssan01@gmail.com",ct_phone:"الهاتف",ct_phone_ph:"+212 650 588597",
   ct_loc:"الموقع",ct_loc_v:"مراكش، المغرب",
   ft_p:"جمعية مستقلة غير ربحية يقودها الشباب ومقرها المغرب، تخدم المحتاجين بالتعاطف والتضامن.",
-  ft_slogan:"ننشر الأمل، ونصنع التغيير.",ft_links:"روابط سريعة",ft_getinv:"شارك معنا",ft_contact:"تواصل",ft_ig:"إنستغرام",
+  ft_slogan:"بصمة إنسان، أثر يبقى",ft_links:"روابط سريعة",ft_getinv:"شارك معنا",ft_contact:"تواصل",ft_ig:"إنستغرام",
   ct_email_ph2:"basmatinssan01@gmail.com",ct_phone_ph2:"+212 650 588597",
   ft_rights:"© 2026 بصمة إنسان. جميع الحقوق محفوظة.",ft_made:"صُنع بـ",ft_morocco:"في المغرب"
 }};
