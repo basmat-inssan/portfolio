@@ -223,17 +223,6 @@ html[dir="rtl"] .hero-eyebrow{font-size:.9rem}
 .hero-float.f2{width:70px;height:70px;background:radial-gradient(circle at 30% 30%,rgba(11,45,80,.14),rgba(11,45,80,.03));bottom:14%;inset-inline-end:38%;animation-delay:1.6s}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 
-/* Scroll hint */
-.scroll-hint{
-  position:absolute;bottom:28px;inset-inline-start:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-gray);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
-}
-html[dir="rtl"] .scroll-hint{transform:translateX(50%)}
-.scroll-hint .wheel{width:24px;height:38px;border:2px solid rgba(11,45,80,.3);border-radius:14px;position:relative}
-.scroll-hint .wheel::after{content:"";position:absolute;top:6px;inset-inline-start:50%;transform:translateX(-50%);width:4px;height:8px;border-radius:4px;background:var(--gold);animation:wheel 1.8s ease-in-out infinite}
-html[dir="rtl"] .scroll-hint .wheel::after{transform:translateX(50%)}
-@keyframes wheel{0%{opacity:1;top:6px}70%{opacity:0;top:20px}100%{opacity:0}}
-
 /* ============================================================
    HUMAN MESSAGE
    ============================================================ */
@@ -328,14 +317,6 @@ html[dir="rtl"] .value-card::before{transform-origin:right}
 html[dir="rtl"] .activity-card .num{letter-spacing:.02em}
 .activity-card h3{color:var(--white);font-size:1.2rem;margin-bottom:10px}
 .activity-card p{color:rgba(255,255,255,.65);font-size:.93rem;flex:1}
-.activity-card .more{
-  margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.88rem;color:var(--gold-light);
-}
-html[dir="rtl"] .activity-card .more{flex-direction:row}
-.activity-card .more svg{width:16px;height:16px;transition:transform .35s var(--ease)}
-html[dir="ltr"] .activity-card:hover .more svg{transform:translateX(5px)}
-html[dir="rtl"] .activity-card:hover .more svg{transform:translateX(-5px) scaleX(-1)}
-html[dir="rtl"] .activity-card .more svg{transform:scaleX(-1)}
 .activities-note{margin-top:44px;text-align:center;color:rgba(255,255,255,.45);font-size:.88rem;font-style:italic}
 
 /* ============================================================
@@ -444,20 +425,19 @@ html[dir="rtl"] .impact-card p{font-family:var(--font-ar-head)}
 }
 .ig-handle:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .ig-handle svg{width:26px;height:26px;color:var(--gold)}
-.ig-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:44px}
-.ig-tile{
-  border-radius:16px;overflow:hidden;position:relative;aspect-ratio:1/1;box-shadow:var(--shadow-sm);
+.ig-strip{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:28px;max-width:1120px;margin:40px auto 44px;align-items:start;
 }
-.ig-tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
-.ig-tile::after{
-  content:"";position:absolute;inset:0;background:rgba(7,31,56,.55);
-  opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;
+.ig-post{min-width:0;display:flex;justify-content:center}
+.ig-post .instagram-media{
+  width:100%!important;max-width:540px!important;min-width:0!important;
+  margin:0 auto!important;border:0!important;border-radius:12px!important;
+  box-shadow:var(--shadow-sm)!important;overflow:hidden!important;
 }
-.ig-tile:hover img{transform:scale(1.08)}
-.ig-tile:hover::after{opacity:1}
-.ig-tile .ig-ic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.4s;z-index:2}
-.ig-tile:hover .ig-ic{opacity:1}
-.ig-tile .ig-ic svg{width:30px;height:30px;color:var(--white)}
+@media(max-width:640px){
+  .ig-strip{grid-template-columns:minmax(0,1fr);gap:20px}
+}
 
 /* ============================================================
    CONTACT / FOOTER
@@ -533,7 +513,6 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   .activities-grid{grid-template-columns:repeat(2,1fr)}
   .about-grid{grid-template-columns:1fr;gap:90px}
   .masonry{columns:2}
-  .ig-strip{grid-template-columns:repeat(3,1fr)}
   .involved-grid{grid-template-columns:1fr}
   .involved-media{order:-1}
   .involved-media img{height:340px}
@@ -551,7 +530,6 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   .hero-badge{inset-inline-start:12px;bottom:14px;padding:12px 16px}
   .values-grid,.activities-grid,.impact-statements{grid-template-columns:1fr}
   .masonry{columns:1}
-  .ig-strip{grid-template-columns:repeat(2,1fr)}
   .about-media .small-img{width:170px;height:130px;bottom:-28px;inset-inline-end:-10px}
   .about-media .exp-badge{inset-inline-start:-8px;padding:14px 18px}
   .support-card .body{padding:44px 28px}
@@ -561,7 +539,6 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   .brand-text small{font-size:.72rem}
   .navbar .brand-logo{width:42px;height:42px}
   .navbar .brand-fallback{width:42px;height:42px}
-  .scroll-hint{display:none}
   .contact-visual{height:340px}
 }
 </style>
@@ -635,13 +612,6 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
       <div class="frame">
         <img src="assets/hero-morocco.png" alt="A warm Moroccan community street bathed in golden light" data-i18n-alt="hero_img_alt">
       </div>
-      <div class="hero-badge reveal reveal-d2">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-7.5-10.4C4.5 6.8 8 4.5 12 4.5s7.5 2.3 7.5 6.1C19.5 16.4 12 21 12 21z"/><path d="M8.8 11.5c.8-1.9 2-2.9 3.2-2.9s2.4 1 3.2 2.9M10.3 13.6c.4-1 1.1-1.5 1.7-1.5s1.3.5 1.7 1.5"/></svg>
-        <div>
-          <strong data-i18n="hero_badge_t">Independent &amp; Youth-Led</strong>
-          <span data-i18n="hero_badge_s">A non-profit association from Morocco</span>
-        </div>
-      </div>
     </div>
 
     <div class="hero-copy">
@@ -656,10 +626,6 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
-  </div>
-  <div class="scroll-hint">
-    <div class="wheel"></div>
-    <span data-i18n="scroll">Scroll</span>
   </div>
 </section>
 
@@ -691,7 +657,7 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
           <span class="kicker" data-i18n="about_kicker">Who We Are</span>
         </div>
         <h2 class="section-title reveal reveal-d1" data-i18n="about_title">A youth-led association with a human mark</h2>
-        <p class="reveal reveal-d1" data-i18n="about_p1">Basmat Inssan (بصمة إنسان — "a human fingerprint") is an independent, non-profit, youth-led association based in Morocco. Our name reflects our belief that every act of kindness leaves a lasting mark on a human life.</p>
+        <p class="reveal reveal-d1" data-i18n="about_p1">Basmat Inssan (بصمة إنسان — "a human fingerprint") is an independent, non-profit, youth-led association founded in June 2025. Our name reflects our belief that every act of kindness leaves a lasting mark on a human life.</p>
         <p class="reveal reveal-d2" data-i18n="about_p2">We exist to stand beside people in need — with dignity, warmth and solidarity — and to inspire a new generation to serve its community with love and responsibility.</p>
         <ul class="about-points reveal reveal-d2">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="about_pt1">Independent &amp; non-profit by principle</span></li>
@@ -753,58 +719,51 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
         <div class="thumb"><img src="assets/volunteers-group.png" alt="Young volunteers together"></div>
         <div class="body">
           <span class="num" data-i18n="act1_n">01</span>
-          <h3 data-i18n="act1_t">Community Support</h3>
-          <p data-i18n="act1_p">Standing beside our neighbours through local initiatives that respond to real, everyday needs.</p>
-          <span class="more"><span data-i18n="act_more">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3 data-i18n="act1_t">Bags of Hope</h3>
+          <p data-i18n="act1_p">We support children whose families cannot afford school supplies, helping them start the school year with confidence and hope.</p>
         </div>
       </article>
       <article class="activity-card reveal reveal-d1">
         <div class="thumb"><img src="assets/food-bank.png" alt="Volunteers packing food donation boxes"></div>
         <div class="body">
           <span class="num" data-i18n="act2_n">02</span>
-          <h3 data-i18n="act2_t">Food Distribution</h3>
-          <p data-i18n="act2_p">Collecting and sharing food supplies with families and individuals facing difficult times.</p>
-          <span class="more"><span data-i18n="act_more2">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3 data-i18n="act2_t">Warmth for All Caravan</h3>
+          <p data-i18n="act2_p">We bring clothing, shoes, blankets, gloves and socks to people in remote areas facing harsh winter conditions.</p>
         </div>
       </article>
       <article class="activity-card reveal reveal-d2">
         <div class="thumb"><img src="assets/child-hope.png" alt="A helping hand reaching out to a child"></div>
         <div class="body">
           <span class="num" data-i18n="act3_n">03</span>
-          <h3 data-i18n="act3_t">Support for Families in Need</h3>
-          <p data-i18n="act3_p">Reaching out to families with care, attention and practical help — always with dignity.</p>
-          <span class="more"><span data-i18n="act_more3">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3 data-i18n="act3_t">Ramadan Food Baskets</h3>
+          <p data-i18n="act3_p">We share essential food baskets with families in need during Ramadan, supporting them with care and solidarity.</p>
         </div>
       </article>
       <article class="activity-card reveal">
         <div class="thumb"><img src="assets/elderly-care.png" alt="Caring hands holding an elderly person's hands"></div>
         <div class="body">
           <span class="num" data-i18n="act4_n">04</span>
-          <h3 data-i18n="act4_t">Aid &amp; Solidarity</h3>
-          <p data-i18n="act4_p">Showing up for the elderly, the vulnerable and anyone who needs a hand to hold.</p>
-          <span class="more"><span data-i18n="act_more4">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3 data-i18n="act4_t">Wayfarer Iftar</h3>
+          <p data-i18n="act4_p">We provide ready-to-eat iftar meals for fasting people, travellers and anyone caught away from home at sunset.</p>
         </div>
       </article>
       <article class="activity-card reveal reveal-d1">
         <div class="thumb"><img src="assets/volunteer-park.png" alt="A smiling young volunteer in a park"></div>
         <div class="body">
           <span class="num" data-i18n="act5_n">05</span>
-          <h3 data-i18n="act5_t">Volunteer Initiatives</h3>
-          <p data-i18n="act5_p">Mobilizing young people to serve, give their time and grow through meaningful action.</p>
-          <span class="more"><span data-i18n="act_more5">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3 data-i18n="act5_t">An Orphan's Joy</h3>
+          <p data-i18n="act5_p">For Eid al-Adha, we provide sacrificial animals and gifts to orphaned children, sharing the joy of Eid with care.</p>
         </div>
       </article>
       <article class="activity-card reveal reveal-d2">
         <div class="thumb"><img src="assets/community-meals.png" alt="Serving warm meals to the community"></div>
         <div class="body">
           <span class="num" data-i18n="act6_n">06</span>
-          <h3 data-i18n="act6_t">Community Outreach</h3>
-          <p data-i18n="act6_p">Meeting people where they are — building bonds, trust and a stronger community.</p>
-          <span class="more"><span data-i18n="act_more6">Learn More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3 data-i18n="act6_t">Water for All</h3>
+          <p data-i18n="act6_p">We place water jars outside shops and in public spaces, offering passersby a refreshing drink, especially on hot days.</p>
         </div>
       </article>
     </div>
-    <p class="activities-note reveal" data-i18n="act_note">This section will be updated with Basmat Inssan's confirmed activities and real photos.</p>
   </div>
 </section>
 
@@ -846,8 +805,8 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
         <h2 class="reveal reveal-d1" data-i18n="inv_title">Be Part of the Change</h2>
         <p class="lead reveal reveal-d2" data-i18n="inv_lead">Your time, your skills and your kindness can make a difference.</p>
         <div class="involved-cta reveal reveal-d2">
-          <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" class="btn btn-gold" data-i18n="inv_cta1">Donation</a>
-          <a href="#support" class="btn btn-ghost-light" data-i18n="inv_cta2">Support Our Mission</a>
+          <a href="" class="btn btn-gold" data-i18n="inv_cta1">Donation</a>
+          <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" class="btn btn-ghost-light" data-i18n="inv_cta2">Contribute to Our Mission</a>
         </div>
         <div class="involved-steps reveal reveal-d3">
           <div class="step"><span class="n">1</span><span data-i18n="inv_st1">Reach out to us through Instagram</span></div>
@@ -878,11 +837,10 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
       @basmatinssan
     </a>
     <div class="ig-strip">
-      <a class="ig-tile reveal" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/food-bank.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
-      <a class="ig-tile reveal reveal-d1" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/community-meals.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
-      <a class="ig-tile reveal reveal-d2" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/volunteers-group.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
-      <a class="ig-tile reveal reveal-d1" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/packing-food.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
-      <a class="ig-tile reveal reveal-d2" href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener"><img src="assets/hero-morocco.png" alt="Activity photo"><span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg></span></a>
+      <div class="ig-post reveal reveal-d1"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd9rf6AAHFJ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dd9rf6AAHFJ/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal reveal-d2"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd01oU7ANCp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dd01oU7ANCp/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdrjKNkAF8x/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrjKNkAF8x/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal reveal-d1"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdrbB2wgD9Y/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrbB2wgD9Y/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
     </div>
     <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" class="btn btn-navy reveal"><span data-i18n="ig_cta">Follow us on Instagram</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -943,7 +901,7 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
             <small>بصمة إنسان</small>
           </span>
         </a>
-        <p data-i18n="ft_p">An independent, youth-led non-profit association based in Morocco, serving people in need with compassion and solidarity.</p>
+        <p data-i18n="ft_p">An independent, youth-led non-profit association founded in June 2025, serving people in need with compassion and solidarity.</p>
         <p class="slogan" data-i18n="ft_slogan">A Human Mark. A Lasting Impact.</p>
         <div class="footer-social">
           <a href="https://www.tiktok.com/@basmatinssan01?_r=1&_t=ZS-9ALAMLYPeHU" target="_blank" rel="noopener" aria-label="TikTok">
@@ -993,6 +951,8 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
 </button>
 
+<script async src="https://www.instagram.com/embed.js"></script>
+
 <script>
 /* ============================================================
    i18n — English & Arabic dictionaries
@@ -1006,11 +966,10 @@ en:{
   hero_sub:"Basmat Inssan is an independent youth-led non-profit association dedicated to supporting people in need and spreading hope, compassion and solidarity within our community.",
   hero_cta1:"Discover Our Mission",hero_cta2:"Join Us",
   hero_badge_t:"Independent & Youth-Led",hero_badge_s:"A non-profit association from Morocco",
-  scroll:"Scroll",
   human_quote:'Every person deserves <em>dignity</em>, <em>compassion</em> and a helping hand.',
   human_body:"At Basmat Inssan, we believe that meaningful change begins with simple human actions. Through volunteering, solidarity and community initiatives, we seek to support those who need it most.",
   about_kicker:"Who We Are",about_title:"A youth-led association with a human mark",
-  about_p1:'Basmat Inssan (بصمة إنسان — "a human fingerprint") is an independent, non-profit, youth-led association based in Morocco. Our name reflects our belief that every act of kindness leaves a lasting mark on a human life.',
+  about_p1:'Basmat Inssan (بصمة إنسان — "a human fingerprint") is an independent, non-profit, youth-led association founded in June 2025. Our name reflects our belief that every act of kindness leaves a lasting mark on a human life.',
   about_p2:"We exist to stand beside people in need — with dignity, warmth and solidarity — and to inspire a new generation to serve its community with love and responsibility.",
   about_pt1:"Independent & non-profit by principle",about_pt2:"Led by young people, for the whole community",about_pt3:"Humanity first — always with dignity",
   about_cta:"Be a Part of Our Mission",about_badge_t:"100%",about_badge_s:"Volunteer-driven",
@@ -1022,14 +981,12 @@ en:{
   val6_t:"Hope",val6_p:"We carry hope to those who need it most — and we never give up.",
   act_kicker:"Our Activities",act_title:"Where help meets action",
   act_lead:"Our initiatives grow from the real needs of our community. Each activity is a small fingerprint of kindness — and together, they leave a human mark.",
-  act1_n:"01",act1_t:"Community Support",act1_p:"Standing beside our neighbours through local initiatives that respond to real, everyday needs.",
-  act2_n:"02",act2_t:"Food Distribution",act2_p:"Collecting and sharing food supplies with families and individuals facing difficult times.",
-  act3_n:"03",act3_t:"Support for Families in Need",act3_p:"Reaching out to families with care, attention and practical help — always with dignity.",
-  act4_n:"04",act4_t:"Aid & Solidarity",act4_p:"Showing up for the elderly, the vulnerable and anyone who needs a hand to hold.",
-  act5_n:"05",act5_t:"Volunteer Initiatives",act5_p:"Mobilizing young people to serve, give their time and grow through meaningful action.",
-  act6_n:"06",act6_t:"Community Outreach",act6_p:"Meeting people where they are — building bonds, trust and a stronger community.",
-  act_more:"Learn More",act_more2:"Learn More",act_more3:"Learn More",act_more4:"Learn More",act_more5:"Learn More",act_more6:"Learn More",
-  act_note:"This section will be updated with Basmat Inssan's confirmed activities and real photos.",
+  act1_n:"01",act1_t:"Bags of Hope",act1_p:"We support children whose families cannot afford school supplies, helping them start the school year with confidence and hope.",
+  act2_n:"02",act2_t:"Warmth for All Caravan",act2_p:"We bring clothing, shoes, blankets, gloves and socks to people in remote areas facing harsh winter conditions.",
+  act3_n:"03",act3_t:"Ramadan Food Baskets",act3_p:"We share essential food baskets with families in need during Ramadan, supporting them with care and solidarity.",
+  act4_n:"04",act4_t:"Wayfarer Iftar",act4_p:"We provide ready-to-eat iftar meals for fasting people, travellers and anyone caught away from home at sunset.",
+  act5_n:"05",act5_t:"An Orphan's Joy",act5_p:"For Eid al-Adha, we provide sacrificial animals and gifts to orphaned children, sharing the joy of Eid with care.",
+  act6_n:"06",act6_t:"Water for All",act6_p:"We place water jars outside shops and in public spaces, offering passersby a refreshing drink, especially on hot days.",
   imp_kicker:"Our Impact",imp_title:"Small acts, lasting marks",
   imp_lead:"We don't measure our work only in numbers — we measure it in moments of relief, in smiles, and in the quiet knowledge that someone cared.",
   imp_s1:"Every helping hand matters.",imp_s2:"Every act of kindness can become someone's hope.",
@@ -1039,7 +996,7 @@ en:{
   gal_c1:"Our community, our home",gal_c2:"Hands that give",gal_c3:"Youth in action",gal_c4:"Solidarity at work",gal_c5:"Hope has small hands",gal_c6:"No one left behind",
   inv_kicker:"Get Involved",inv_title:"Be Part of the Change",
   inv_lead:"Your time, your skills and your kindness can make a difference.",
-  inv_cta1:"Donation",inv_cta2:"Support Our Mission",
+  inv_cta1:"Donation",inv_cta2:"Contribute to Our Mission",
   inv_st1:"Reach out to us through Instagram",inv_st2:"Choose how you want to help",inv_st3:"Leave your own human mark",
   sup_kicker:"Support a Human Cause",sup_title:"Together, we can keep the light on",
   sup_p:"Whether through volunteering, sharing our mission or supporting our initiatives, every contribution can help us continue spreading hope and compassion.",
@@ -1050,7 +1007,7 @@ en:{
   ct_p:"Have an idea, a question, or a heart ready to help? We'd love to hear from you.",
   ct_email:"Email",ct_email_ph:"basmatinssan01@gmail.com",ct_phone:"Phone",ct_phone_ph:"+212 650 588597",
   ct_loc:"Location",ct_loc_v:"Morocco, Marrakesh",
-  ft_p:"An independent, youth-led non-profit association based in Morocco, serving people in need with compassion and solidarity.",
+  ft_p:"An independent, youth-led non-profit association founded in June 2025, serving people in need with compassion and solidarity.",
   ft_slogan:"A Human Mark. A Lasting Impact.",ft_links:"Quick Links",ft_getinv:"Get Involved",ft_contact:"Contact",ft_ig:"Instagram",
   ct_email_ph2:"basmatinssan01@gmail.com",ct_phone_ph2:"+212 650 588597",
   ft_rights:"© 2026 Basmat Inssan. All rights reserved.",ft_made:"Made with",ft_morocco:"in Morocco"
@@ -1067,7 +1024,7 @@ ar:{
   human_quote:'كل إنسان يستحق <em>الكرامة</em>، و<em>الرحمة</em>، ويدًا تمتد إليه.',
   human_body:"في بصمة إنسان، نؤمن بأن التغيير الحقيقي يبدأ من أفعال إنسانية بسيطة. ومن خلال التطوع والتضامن والمبادرات المجتمعية، نسعى إلى مساندة من هم في أمسّ الحاجة إلى الدعم.",
   about_kicker:"من نحن؟",about_title:"جمعية شبابية تترك أثرًا إنسانيًا",
-  about_p1:'بصمة إنسان جمعية مستقلة غير ربحية يقودها الشباب، مقرها المغرب. ويعكس اسمنا إيماننا بأن كل عمل خير يترك بصمة إنسانية تدوم في حياة الناس.',
+  about_p1:'بصمة إنسان جمعية مستقلة غير ربحية يقودها الشباب، تأسست في يونيو 2025. ويعكس اسمنا إيماننا بأن كل عمل خير يترك بصمة إنسانية تدوم في حياة الناس.',
   about_p2:"نحن هنا لنقف إلى جانب المحتاجين — بكرامة ودفء وتضامن — ولنلهم جيلًا جديدًا ليخدم مجتمعه بحب ومسؤولية.",
   about_pt1:"مستقلة وغير ربحية بمبدأ",about_pt2:"يقودها الشباب من أجل المجتمع كله",about_pt3:"الإنسان أولاً — ودائمًا بكرامة",
   about_cta:"كن جزءًا من رسالتنا",about_badge_t:"100%",about_badge_s:"عمل تطوعي",
@@ -1079,14 +1036,12 @@ ar:{
   val6_t:"الأمل",val6_p:"نحمل الأمل لمن هم في أمسّ الحاجة إليه — ولا نستسلم أبدًا.",
   act_kicker:"أنشطتنا",act_title:"حيث يلتقي العون بالعمل",
   act_lead:"تنبثق مبادراتنا من احتياجات مجتمعنا الحقيقية. كل نشاط هو بصمة خير صغيرة — ومجتمعةً، تترك أثرًا إنسانيًا.",
-  act1_n:"01",act1_t:"الدعم المجتمعي",act1_p:"الوقوف إلى جانب جيراننا من خلال مبادرات محلية تستجيب لاحتياجات حقيقية يومية.",
-  act2_n:"02",act2_t:"توزيع المواد الغذائية",act2_p:"جمع المواد الغذائية ومشاركتها مع الأسر والأفراد الذين يمرون بأوقات صعبة.",
-  act3_n:"03",act3_t:"دعم الأسر المحتاجة",act3_p:"مدّ يد العون للأسر بالاهتمام والمساعدة العملية — ودائمًا بكرامة.",
-  act4_n:"04",act4_t:"المساعدة والتضامن",act4_p:"الحضور إلى جانب كبار السن والفئات الهشة وكل من يحتاج إلى يدٍ تمتد إليه.",
-  act5_n:"05",act5_t:"المبادرات التطوعية",act5_p:"تحشيد الشباب للتطوع وبذل الوقت والنمو من خلال أفعال هادفة.",
-  act6_n:"06",act6_t:"التواصل المجتمعي",act6_p:"الوصول إلى الناس حيث هم — لبناء علاقات وثقة ومجتمع أقوى.",
-  act_more:"اعرف المزيد",act_more2:"اعرف المزيد",act_more3:"اعرف المزيد",act_more4:"اعرف المزيد",act_more5:"اعرف المزيد",act_more6:"اعرف المزيد",
-  act_note:"سيتم تحديث هذا القسم بأنشطة بصمة إنسان الحقيقية وصورها الفعلية.",
+  act1_n:"01",act1_t:"حقائب الخير",act1_p:"نساند الأطفال الذين لا تسمح إمكانيات أسرهم بتوفير مستلزماتهم الدراسية، لنمنحهم بداية مدرسية مشرفة يملؤها الأمل.",
+  act2_n:"02",act2_t:"قافلة دفئهم علينا",act2_p:"نصل إلى سكان المناطق النائية بالملابس والأحذية والأغطية والقفازات والجوارب، لمساندتهم في مواجهة قسوة البرد.",
+  act3_n:"03",act3_t:"قفة رمضان",act3_p:"نوزع قففًا من المواد الغذائية الأساسية على الأسر المحتاجة خلال شهر رمضان، دعمًا لها وتعزيزًا لقيم التضامن.",
+  act4_n:"04",act4_t:"عابر سبيل",act4_p:"نوفر وجبات إفطار جاهزة للصائمين وعابري السبيل وكل محتاج يحلّ عليه وقت الإفطار بعيدًا عن بيته.",
+  act5_n:"05",act5_t:"فرحة يتيم",act5_p:"بمناسبة عيد الأضحى، نوفر الأضاحي والهدايا للأطفال الأيتام، ونشاركهم فرحة العيد بكل حب واهتمام.",
+  act6_n:"06",act6_t:"سقيا الماء",act6_p:"نضع «خابية» الماء أمام المحلات وفي الأماكن العامة ليستفيد منها المارة، ونروي ظمأهم، خصوصًا مع ارتفاع درجات الحرارة.",
   imp_kicker:"أثرنا",imp_title:"أفعال صغيرة، وآثار تدوم",
   imp_lead:"لا نقيس عملنا بالأرقام فحسب — بل بلحظات الارتياح، والابتسامات، وشعور هادئ بأن هناك من اهتم.",
   imp_s1:"كل يدٍ تمتد بالعون لها أثر.",imp_s2:"كل عمل خير يمكن أن يصبح أملاً لشخص آخر.",
@@ -1096,7 +1051,7 @@ ar:{
   gal_c1:"مجتمعنا، وطننا",gal_c2:"أيادٍ تعطي",gal_c3:"شباب في العمل",gal_c4:"التضامن في ميدان العمل",gal_c5:"للأمل أيادٍ صغيرة",gal_c6:"لا نترك أحدًا خلفنا",
   inv_kicker:"ساهم معنا",inv_title:"كن جزءًا من التغيير",
   inv_lead:"وقتك، ومهاراتك، وإنسانيتك يمكن أن تصنع فرقًا.",
-  inv_cta1:"تبرع",inv_cta2:"ساند رسالتنا",
+  inv_cta1:"تبرع",inv_cta2:"ساهم في رسالتنا",
   inv_st1:"تواصل معنا عبر إنستغرام",inv_st2:"اختر كيف تريد أن تساهم",inv_st3:"اترك بصمتك الإنسانية الخاصة",
   sup_kicker:"ساند قضية إنسانية",sup_title:"معًا، نُبقي النور مشتعلًا",
   sup_p:"سواء من خلال التطوع، أو مشاركة رسالتنا، أو دعم مبادراتنا، فإن كل مساهمة يمكن أن تساعدنا على مواصلة نشر الأمل والتعاطف.",
@@ -1107,7 +1062,7 @@ ar:{
   ct_p:"لديك فكرة، أو سؤال، أو قلبٌ مستعد للمساعدة؟ يسعدنا أن نسمع منك.",
   ct_email:"البريد الإلكتروني",ct_email_ph:"basmatinssan01@gmail.com",ct_phone:"الهاتف",ct_phone_ph:"+212 650 588597",
   ct_loc:"الموقع",ct_loc_v:"مراكش، المغرب",
-  ft_p:"جمعية مستقلة غير ربحية يقودها الشباب ومقرها المغرب، تخدم المحتاجين بالتعاطف والتضامن.",
+  ft_p:"جمعية مستقلة غير ربحية يقودها الشباب، تأسست في يونيو 2025، وتخدم المحتاجين بالتعاطف والتضامن.",
   ft_slogan:"بصمة إنسان، أثر يبقى",ft_links:"روابط سريعة",ft_getinv:"شارك معنا",ft_contact:"تواصل",ft_ig:"إنستغرام",
   ct_email_ph2:"basmatinssan01@gmail.com",ct_phone_ph2:"+212 650 588597",
   ft_rights:"© 2026 بصمة إنسان. جميع الحقوق محفوظة.",ft_made:"صُنع بـ",ft_morocco:"في المغرب"
