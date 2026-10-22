@@ -106,7 +106,8 @@ html[dir="rtl"] .kicker{letter-spacing:.02em;font-size:.9rem}
   box-shadow:0 4px 24px rgba(7,31,56,.08);
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.nav-inner>*{min-width:0}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;flex:0 1 auto}
 .brand-logo{height:52px;width:auto;object-fit:contain;transition:height .4s var(--ease)}
 .navbar .brand-logo{
   width:52px;height:52px;object-fit:cover;object-position:center;border-radius:50%;
@@ -138,7 +139,7 @@ html[dir="rtl"] .kicker{letter-spacing:.02em;font-size:.9rem}
 .nav-actions{display:flex;align-items:center;gap:14px}
 .lang-switch{
   display:flex;align-items:center;gap:2px;background:rgba(11,45,80,.07);
-  border-radius:999px;padding:4px;font-weight:700;
+  border-radius:999px;padding:4px;font-weight:700;flex:none;white-space:nowrap;
 }
 .lang-switch button{
   border:none;background:transparent;cursor:pointer;padding:7px 14px;border-radius:999px;
@@ -209,6 +210,7 @@ html[dir="rtl"] .hero-media .frame{transform:rotate(1.2deg)}
 html[dir="rtl"] .hero-eyebrow{font-size:.9rem}
 .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(217,165,46,.25)}
 .hero h1{font-size:clamp(2.6rem,5.4vw,4.3rem);letter-spacing:-.02em;margin-bottom:24px}
+html[lang="fr"] .hero h1{font-size:clamp(2rem,5.4vw,4.3rem)}
 .hero h1 .gold{
   background:linear-gradient(120deg,var(--gold) 10%,#b8860b 60%,var(--gold-light) 110%);
   -webkit-background-clip:text;background-clip:text;color:transparent;position:relative;top:.1em;
@@ -525,6 +527,11 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   .hamburger{display:block}
 }
 @media(max-width:640px){
+  .nav-inner{gap:8px}
+  .brand{gap:8px}
+  .nav-actions{gap:8px}
+  .lang-switch button{padding:6px 8px}
+  .hamburger{padding:6px}
   .hero{padding-top:110px}
   .hero-media img{height:320px}
   .hero-badge{inset-inline-start:12px;bottom:14px;padding:12px 16px}
@@ -540,6 +547,21 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   .navbar .brand-logo{width:42px;height:42px}
   .navbar .brand-fallback{width:42px;height:42px}
   .contact-visual{height:340px}
+  .about-grid>*,.involved-grid>*,.contact-grid>*,.footer-grid>*,.activities-grid>*,.values-grid>*{min-width:0}
+}
+@media(max-width:380px){
+  .container{width:94%}
+  .nav-inner{gap:4px}
+  .brand{gap:6px}
+  .brand-text strong{font-size:.82rem}
+  .brand-text small{display:none}
+  .navbar .brand-logo,.navbar .brand-fallback{width:36px;height:36px}
+  .nav-actions{gap:4px}
+  .lang-switch{gap:0;padding:3px}
+  .lang-switch button{padding:5px 5px;font-size:.72rem}
+  .hamburger{padding:5px}
+  .hamburger span{width:22px}
+  .about-media .small-img{inset-inline-end:-6px}
 }
 </style>
 </head>
@@ -578,11 +600,12 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
     </nav>
 
     <div class="nav-actions">
-      <div class="lang-switch" role="group" aria-label="Language">
+      <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria-label="ui_language">
         <button id="btnEN" class="active" type="button">EN</button>
+        <button id="btnFR" type="button">FR</button>
         <button id="btnAR" type="button">العربية</button>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" aria-label="Menu" data-i18n-aria-label="ui_menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -591,7 +614,7 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose" aria-label="Close">
+  <button class="mobile-close" id="mobileClose" aria-label="Close" data-i18n-aria-label="ui_close">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
   <a href="#home" data-i18n="nav_home">Home</a>
@@ -836,10 +859,10 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
       @basmatinssan
     </a>
     <div class="ig-strip">
-      <div class="ig-post reveal reveal-d1"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd9rf6AAHFJ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dd9rf6AAHFJ/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
-      <div class="ig-post reveal reveal-d2"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd01oU7ANCp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dd01oU7ANCp/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
-      <div class="ig-post reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdrjKNkAF8x/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrjKNkAF8x/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
-      <div class="ig-post reveal reveal-d1"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdrbB2wgD9Y/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrbB2wgD9Y/" target="_blank" rel="noopener">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal reveal-d1"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd9rf6AAHFJ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dd9rf6AAHFJ/" target="_blank" rel="noopener" data-i18n="ig_view_post">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal reveal-d2"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd01oU7ANCp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Dd01oU7ANCp/" target="_blank" rel="noopener" data-i18n="ig_view_post">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdrjKNkAF8x/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrjKNkAF8x/" target="_blank" rel="noopener" data-i18n="ig_view_post">View this post on Instagram</a></blockquote></div>
+      <div class="ig-post reveal reveal-d1"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdrbB2wgD9Y/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrbB2wgD9Y/" target="_blank" rel="noopener" data-i18n="ig_view_post">View this post on Instagram</a></blockquote></div>
     </div>
     <a href="https://www.instagram.com/basmatinssan/" target="_blank" rel="noopener" class="btn btn-navy reveal"><span data-i18n="ig_cta">Follow us on Instagram</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -946,7 +969,7 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
   </div>
 </footer>
 
-<button class="to-top" id="toTop" aria-label="Back to top">
+<button class="to-top" id="toTop" aria-label="Back to top" data-i18n-aria-label="ui_back_to_top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
 </button>
 
@@ -958,11 +981,13 @@ html[dir="rtl"] .to-top svg{transform:rotate(180deg)}
    ============================================================ */
 const I18N = {
 en:{
+  ui_language:"Language",ui_menu:"Menu",ui_close:"Close",ui_back_to_top:"Back to top",
   nav_home:"Home",nav_about:"About Us",nav_activities:"Our Activities",nav_impact:"Our Impact",
   nav_involved:"Get Involved",nav_contact:"Contact",nav_support:"Support Us",
   hero_eyebrow:"Non-profit · Independent · Youth-led",
   hero_title_1:"A Human Mark,",hero_title_2:"A Lasting Impact...",
   hero_sub:"Basmat Inssan is an independent youth-led non-profit association dedicated to supporting people in need and spreading hope, compassion and solidarity within our community.",
+  hero_img_alt:"A warm Moroccan community street bathed in golden light",
   hero_cta1:"Discover Our Mission",hero_cta2:"Join Us",
   hero_badge_t:"Independent & Youth-Led",hero_badge_s:"A non-profit association from Morocco",
   human_quote:'Every person deserves <em>dignity</em>, <em>compassion</em> and a helping hand.',
@@ -1003,7 +1028,7 @@ en:{
   sup_p:"Whether through volunteering, sharing our mission or supporting our initiatives, every contribution can help us continue spreading hope and compassion.",
   sup_w1:"Volunteer your time and energy",sup_w2:"Share our story with your community",sup_w3:"Support our initiatives and campaigns",
   sup_cta:"Support Basmat Inssan",sup_fine:"Official donation channels will be announced here once confirmed.",
-  ig_kicker:"Follow Our Journey",ig_title:"Our story unfolds every day",ig_cta:"Follow us on Instagram",
+  ig_kicker:"Follow Our Journey",ig_title:"Our story unfolds every day",ig_cta:"Follow us on Instagram",ig_view_post:"View this post on Instagram",
   ct_kicker:"Contact",ct_title:"Let's leave a mark together",
   ct_p:"Have an idea, a question, or a heart ready to help? We'd love to hear from you.",
   ct_email:"Email",ct_email_ph:"basmatinssan00@gmail.com",ct_phone:"Phone",ct_phone_ph:"+212 650 588597",
@@ -1014,11 +1039,13 @@ en:{
   ft_rights:"© 2026 Basmat Inssan. All rights reserved.",ft_made:"Made with",ft_morocco:"in Morocco"
 },
 ar:{
+  ui_language:"اللغة",ui_menu:"القائمة",ui_close:"إغلاق",ui_back_to_top:"العودة إلى الأعلى",
   nav_home:"الرئيسية",nav_about:"من نحن",nav_activities:"أنشطتنا",nav_impact:"أثرنا",
   nav_involved:"ساهم معنا",nav_contact:"تواصل معنا",nav_support:"ادعمنا",
   hero_eyebrow:"جمعية غير ربحية · مستقلة · يقودها الشباب",
   hero_title_1:"بصمة إنسان،",hero_title_2:"أثر يبقى...",
   hero_sub:"بصمة إنسان جمعية مستقلة غير ربحية يقودها الشباب، تهدف إلى مساعدة المحتاجين ونشر الأمل والتعاطف والتضامن داخل المجتمع.",
+  hero_img_alt:"شارع مغربي دافئ تغمره أشعة ذهبية",
   hero_cta1:"اكتشف رسالتنا",hero_cta2:"انضم إلينا",
   hero_badge_t:"مستقلة ويقودها الشباب",hero_badge_s:"جمعية غير ربحية من المغرب",
   scroll:"مرّر للأسفل",
@@ -1060,7 +1087,7 @@ ar:{
   sup_p:"سواء من خلال التطوع، أو مشاركة رسالتنا، أو دعم مبادراتنا، فإن كل مساهمة يمكن أن تساعدنا على مواصلة نشر الأمل والتعاطف.",
   sup_w1:"تطوع بوقتك وطاقتك",sup_w2:"شارك قصتنا مع مجتمعك",sup_w3:"ادعم مبادراتنا وحملاتنا",
   sup_cta:"ادعم بصمة إنسان",sup_fine:"سيتم الإعلان عن قنوات التبرع الرسمية هنا فور اعتمادها.",
-  ig_kicker:"تابعوا مسيرتنا",ig_title:"قصتنا تتجدد كل يوم",ig_cta:"تابعونا على إنستغرام",
+  ig_kicker:"تابعوا مسيرتنا",ig_title:"قصتنا تتجدد كل يوم",ig_cta:"تابعونا على إنستغرام",ig_view_post:"شاهد هذا المنشور على إنستغرام",
   ct_kicker:"تواصل معنا",ct_title:"لنترك معًا بصمة إنسانية",
   ct_p:"لديك فكرة، أو سؤال، أو قلبٌ مستعد للمساعدة؟ يسعدنا أن نسمع منك.",
   ct_email:"البريد الإلكتروني",ct_email_ph:"basmatinssan00@gmail.com",ct_phone:"الهاتف",ct_phone_ph:"+212 650 588597",
@@ -1069,26 +1096,100 @@ ar:{
   ft_slogan:"بصمة إنسان، أثر يبقى",ft_links:"روابط سريعة",ft_getinv:"شارك معنا",ft_contact:"تواصل",ft_ig:"إنستغرام",
   ct_email_ph2:"basmatinssan00@gmail.com",ct_phone_ph2:"+212 650 588597",
   ft_rights:"© 2026 بصمة إنسان. جميع الحقوق محفوظة.",ft_made:"صُنع بـ",ft_morocco:"في المغرب"
+},
+fr:{
+  ui_language:"Langue",ui_menu:"Menu",ui_close:"Fermer",ui_back_to_top:"Retour en haut",
+  nav_home:"Accueil",nav_about:"À propos",nav_activities:"Nos activités",nav_impact:"Notre impact",
+  nav_involved:"Nous rejoindre",nav_contact:"Contact",nav_support:"Nous soutenir",
+  hero_eyebrow:"Association à but non lucratif · Indépendante · Portée par des jeunes",
+  hero_title_1:"Une empreinte humaine,",hero_title_2:"Un impact durable...",
+  hero_sub:"Basmat Inssan est une association indépendante à but non lucratif, portée par des jeunes. Elle soutient les personnes dans le besoin et fait vivre l’espoir, la compassion et la solidarité au sein de la communauté.",
+  hero_img_alt:"Une rue marocaine chaleureuse baignée d’une lumière dorée",
+  hero_cta1:"Découvrir notre mission",hero_cta2:"Nous rejoindre",
+  hero_badge_t:"Indépendante et portée par des jeunes",hero_badge_s:"Une association marocaine à but non lucratif",
+  human_quote:'Chaque personne mérite <em>dignité</em>, <em>compassion</em> et une main tendue.',
+  human_body:"Chez Basmat Inssan, nous croyons que le changement véritable commence par des gestes humains simples. Par le bénévolat, la solidarité et des initiatives locales, nous cherchons à soutenir celles et ceux qui en ont le plus besoin.",
+  about_kicker:"Qui sommes-nous ?",about_title:"Une association de jeunes à empreinte humaine",
+  about_p1:"Association éducative, culturelle et sociale portée par des jeunes attachés à la valeur du bénévolat et à son impact sur le développement personnel et collectif. Elle souhaite laisser une empreinte positive auprès des enfants et des jeunes grâce à des activités éducatives, culturelles et artistiques qui encouragent les valeurs humaines, la citoyenneté et la créativité.",
+  about_pt1:"Accompagner et autonomiser les jeunes en développant leur leadership, leur sens des responsabilités et leur citoyenneté active.",
+  about_pt2:"Promouvoir au sein de la communauté des valeurs humaines telles que la solidarité, le respect et le bénévolat.",
+  about_pt3:"Encourager la créativité et l’initiative par des activités artistiques, culturelles et sportives destinées aux jeunes.",
+  about_pt4:"Créer des partenariats avec des associations et des institutions publiques ou privées afin de réaliser des projets de développement durable.",
+  about_cta:"Prenez part à notre mission",about_badge_t:"100%",about_badge_s:"Grâce au bénévolat",
+  val1_t:"Compassion",val1_p:"Nous agissons avec empathie et accueillons chaque personne avec chaleur et attention.",
+  val2_t:"Solidarité",val2_p:"Nous sommes solidaires : personne ne devrait affronter les difficultés seul.",
+  val3_t:"Dignité humaine",val3_p:"Chaque personne mérite d’être reconnue, respectée et valorisée.",
+  val4_t:"Engagement des jeunes",val4_p:"Nous croyons à l’énergie et à la vision des jeunes pour faire avancer le changement.",
+  val5_t:"Service à la communauté",val5_p:"Nous servons notre communauté avec engagement, humilité et constance.",
+  val6_t:"Espoir",val6_p:"Nous apportons de l’espoir à celles et ceux qui en ont le plus besoin, sans jamais renoncer.",
+  act_kicker:"Nos activités",act_title:"Quand l’entraide passe à l’action",
+  act_lead:"Nos initiatives répondent aux besoins réels de notre communauté. Chaque activité est une petite empreinte de bonté qui, réunie aux autres, laisse une trace humaine.",
+  act1_n:"01",act1_t:"Des cartables pleins d’espoir",act1_p:"Nous aidons les enfants dont les familles ne peuvent pas acheter les fournitures scolaires afin qu’ils commencent l’année avec confiance et espoir.",
+  act2_n:"02",act2_t:"La caravane de la chaleur pour tous",act2_p:"Nous apportons vêtements, chaussures, couvertures, gants et chaussettes aux habitants des régions isolées confrontés aux rigueurs de l’hiver.",
+  act3_n:"03",act3_t:"Paniers alimentaires du Ramadan",act3_p:"Nous distribuons des paniers de produits essentiels aux familles dans le besoin pendant le Ramadan, avec attention et solidarité.",
+  act4_n:"04",act4_t:"Iftar pour les voyageurs",act4_p:"Nous proposons des repas d’iftar prêts à emporter aux personnes qui jeûnent, aux voyageurs et à toute personne loin de chez elle au coucher du soleil.",
+  act5_n:"05",act5_t:"La joie d’un enfant orphelin",act5_p:"Pour l’Aïd al-Adha, nous offrons des animaux sacrificiels et des cadeaux aux enfants orphelins afin de partager avec eux la joie de la fête.",
+  act6_n:"06",act6_t:"De l’eau pour tous",act6_p:"Nous installons des jarres d’eau devant les commerces et dans les espaces publics pour rafraîchir les passants, surtout lors des fortes chaleurs.",
+  imp_kicker:"Notre impact",imp_title:"Des gestes modestes, des traces durables",
+  imp_lead:"Nous ne mesurons pas notre action uniquement en chiffres, mais aussi en moments de soulagement, en sourires et dans la certitude discrète que quelqu’un a pris soin des autres.",
+  imp_s1:"Chaque main tendue compte.",imp_s2:"Chaque geste de bonté peut devenir l’espoir de quelqu’un.",
+  imp_banner_t:"Des histoires vraies. Des personnes réelles. Un vrai changement.",imp_banner_p:"Nos statistiques d’impact seront publiées ici dès leur confirmation officielle.",
+  gal_kicker:"Instants de solidarité",gal_title:"La beauté du partage en images",
+  gal_lead:"Quelques instants humains qui inspirent notre parcours — ces images seront remplacées par des photos des activités réelles de Basmat Inssan.",
+  gal_c1:"Notre communauté, notre foyer",gal_c2:"Des mains qui donnent",gal_c3:"Les jeunes en action",gal_c4:"La solidarité en action",gal_c5:"L’espoir se construit à plusieurs mains",gal_c6:"Ne laisser personne de côté",
+  inv_kicker:"Nous rejoindre",inv_title:"Participez au changement",
+  inv_lead:"Votre temps, vos compétences et votre bienveillance peuvent faire la différence.",
+  inv_cta1:"Faire un don",inv_cta2:"Contribuer à notre mission",
+  inv_st1:"Contactez-nous sur Instagram",inv_st2:"Choisissez comment vous souhaitez aider",inv_st3:"Laissez votre propre empreinte humaine",
+  sup_kicker:"Soutenir une cause humaine",sup_title:"Ensemble, faisons perdurer la lumière",
+  sup_p:"Que ce soit en faisant du bénévolat, en partageant notre mission ou en soutenant nos initiatives, chaque contribution nous aide à continuer de faire vivre l’espoir et la compassion.",
+  sup_w1:"Offrez votre temps et votre énergie",sup_w2:"Partagez notre histoire avec votre communauté",sup_w3:"Soutenez nos initiatives et nos campagnes",
+  sup_cta:"Soutenir Basmat Inssan",sup_fine:"Les moyens officiels de faire un don seront annoncés ici dès leur confirmation.",
+  ig_kicker:"Suivez notre parcours",ig_title:"Notre histoire s’écrit chaque jour",ig_cta:"Suivez-nous sur Instagram",ig_view_post:"Voir cette publication sur Instagram",
+  ct_kicker:"Contact",ct_title:"Laissons ensemble une empreinte",
+  ct_p:"Une idée, une question ou l’envie d’aider ? Nous serions ravis d’échanger avec vous.",
+  ct_email:"E-mail",ct_email_ph:"basmatinssan00@gmail.com",ct_phone:"Téléphone",ct_phone_ph:"+212 650 588597",
+  ct_loc:"Lieu",ct_loc_v:"Marrakech, Maroc",
+  ft_p:"Association indépendante à but non lucratif portée par des jeunes, fondée en juin 2025. Elle accompagne les personnes dans le besoin avec compassion et solidarité.",
+  ft_slogan:"Une empreinte humaine. Un impact durable.",ft_links:"Liens rapides",ft_getinv:"Nous rejoindre",ft_contact:"Contact",ft_ig:"Instagram",
+  ct_email_ph2:"basmatinssan00@gmail.com",ct_phone_ph2:"+212 650 588597",
+  ft_rights:"© 2026 Basmat Inssan. Tous droits réservés.",ft_made:"Fait avec",ft_morocco:"au Maroc"
 }};
 
 function setLang(lang){
+  if(!Object.prototype.hasOwnProperty.call(I18N, lang)) lang = 'en';
   const dict = I18N[lang];
   document.documentElement.lang = lang;
   document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
   document.title = lang === 'ar'
     ? 'بصمة إنسان | Basmat Inssan — ننشر الأمل، ونصنع التغيير'
-    : 'Basmat Inssan | بصمة إنسان — Spreading Hope. Creating Change.';
+    : lang === 'fr'
+      ? 'Basmat Inssan | بصمة إنسان — Répandre l’espoir, créer le changement'
+      : 'Basmat Inssan | بصمة إنسان — Spreading Hope. Creating Change.';
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.dataset.i18n;
     if(dict[key] !== undefined) el.innerHTML = dict[key];
   });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el=>{
+    const key = el.dataset.i18nAlt;
+    if(dict[key] !== undefined) el.alt = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el=>{
+    const key = el.dataset.i18nAriaLabel;
+    if(dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+  });
   document.getElementById('btnEN').classList.toggle('active', lang==='en');
+  document.getElementById('btnEN').setAttribute('aria-pressed', String(lang==='en'));
+  document.getElementById('btnFR').classList.toggle('active', lang==='fr');
+  document.getElementById('btnFR').setAttribute('aria-pressed', String(lang==='fr'));
   document.getElementById('btnAR').classList.toggle('active', lang==='ar');
+  document.getElementById('btnAR').setAttribute('aria-pressed', String(lang==='ar'));
   try{ localStorage.setItem('basmat-lang', lang); }catch(e){}
   // Re-observe reveals already in view (no-op) and refresh nav offset
   closeMenu();
 }
 document.getElementById('btnEN').addEventListener('click', ()=>setLang('en'));
+document.getElementById('btnFR').addEventListener('click', ()=>setLang('fr'));
 document.getElementById('btnAR').addEventListener('click', ()=>setLang('ar'));
 
 /* ============================================================
@@ -1136,7 +1237,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* Init language (persisted or browser default) */
 (function(){
   let lang = 'en';
-  try{ lang = localStorage.getItem('basmat-lang') || ((navigator.language||'').startsWith('ar') ? 'ar' : 'en'); }catch(e){}
+  try{
+    lang = localStorage.getItem('basmat-lang') ||
+      ((navigator.language||'').startsWith('ar') ? 'ar' : (navigator.language||'').startsWith('fr') ? 'fr' : 'en');
+  }catch(e){}
   setLang(lang);
 })();
 </script>
